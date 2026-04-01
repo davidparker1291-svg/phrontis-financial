@@ -71,7 +71,6 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <div class="login-overlay" id="a">
 <h1>PHRONTIS FINANCIAL</h1>
 <input type="password" id="b" placeholder="Enter CFP access code" onkeyup="if(this.value==='GarrisonCFP2026!'){document.getElementById('a').style.display='none';document.getElementById('c').style.display='block'}else if(this.value.length>5){document.getElementById('d').style.display='block'}" autofocus>
-<script>if(new URLSearchParams(window.location.search).get("demo")==="true"){document.getElementById("a").style.display="none";document.getElementById("c").style.display="block"}</script>
 <div class="hint">CFP partners only</div>
 <div class="error" id="d">Access denied</div>
 </div>
@@ -197,6 +196,8 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 </div>
 
 <script>
+var params=new URLSearchParams(window.location.search);
+if(params.get("demo")==="true"){document.getElementById("a").style.display="none";document.getElementById("c").style.display="block"}
 function togglePanel(l){var m=document.getElementById(l);if(m.classList.contains("open")){m.classList.remove("open")}else{m.classList.add("open")}}
 var n=new Date();
 var o=Math.ceil((new Date(2027,2,15)-n)/(1000*60*60*24));
