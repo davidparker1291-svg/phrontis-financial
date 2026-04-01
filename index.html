@@ -14,14 +14,22 @@ nav div:first-child{color:#d4af37;font-size:13px;letter-spacing:4px;font-weight:
 nav div:last-child{display:flex;gap:32px;font-size:14px}
 nav div:last-child a{color:#ffffff;font-weight:500}
 nav div:last-child a:hover{color:#d4af37}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+#p{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero>*{position:relative;z-index:1}
 .hero-badge{color:#d4af37;font-size:11px;letter-spacing:3px;font-weight:700;margin-bottom:24px}
-.hero h1{font-size:48px;font-weight:800;max-width:900px;line-height:1.15;margin-bottom:24px}
+.hero h1{font-size:48px;font-weight:800;max-width:900px;line-height:1.15;margin-bottom:24px;background:linear-gradient(90deg,#ffffff 0%,#ffffff 40%,#d4af37 50%,#ffffff 60%,#ffffff 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 1.5s ease forwards}
+@keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
 .hero p{font-size:18px;color:#b0b8c8;max-width:720px;margin-bottom:40px}
-.hero-ctas{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.hero-ctas{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+.hero-demo{margin-bottom:24px}
 .btn-gold{background:#d4af37;color:#0a0e1a;padding:14px 32px;font-size:15px;font-weight:700;border:none;cursor:pointer;display:inline-block}
 .btn-outline{border:2px solid #d4af37;color:#d4af37;padding:12px 32px;font-size:15px;font-weight:700;background:transparent;cursor:pointer;display:inline-block}
+.btn-ghost{color:#b0b8c8;font-size:14px;font-weight:600;padding:8px 24px;border:1px solid rgba(255,255,255,0.2);background:transparent;display:inline-block}
+.btn-ghost:hover{color:#d4af37;border-color:#d4af37}
 .hero-trust{font-size:13px;color:#6b7280}
+.fade-rise{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-rise.visible{opacity:1;transform:translateY(0)}
 section{padding:80px 48px;max-width:1200px;margin:0 auto}
 .section-label{color:#d4af37;font-size:11px;letter-spacing:3px;font-weight:700;margin-bottom:12px}
 h2{font-size:36px;font-weight:800;margin-bottom:24px}
@@ -43,7 +51,7 @@ h2{font-size:36px;font-weight:800;margin-bottom:24px}
 .badge-row{display:flex;gap:16px;flex-wrap:wrap}
 .badge{background:#0a0e1a;border:1px solid #d4af37;padding:8px 20px;font-size:12px;font-weight:700;color:#d4af37;letter-spacing:1px}
 .pricing{text-align:center}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
 .price-card{background:#1a2035;padding:40px 28px;border:1px solid rgba(212,175,55,0.1);text-align:left;display:flex;flex-direction:column}
 .price-card.featured{border:2px solid #d4af37;position:relative}
 .popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#d4af37;color:#0a0e1a;font-size:11px;font-weight:700;padding:4px 16px;letter-spacing:1px}
@@ -74,7 +82,8 @@ footer .right{text-align:right;font-size:12px;color:#6b7280}
 nav{padding:14px 20px}
 nav div:last-child{gap:16px;font-size:13px}
 .hero h1{font-size:30px}
-.stat-grid,.feature-grid,.pricing-grid{grid-template-columns:1fr}
+.stat-grid,.feature-grid{grid-template-columns:1fr}
+.pricing-grid{grid-template-columns:1fr}
 section,.problem,.military,.cfp-section{padding:48px 20px}
 footer{flex-direction:column;text-align:center}
 footer .right{text-align:center}
@@ -93,6 +102,7 @@ footer .right{text-align:center}
 </nav>
 
 <div class="hero">
+<canvas id="p"></canvas>
 <div class="hero-badge">BUILT BY A SPACE FORCE GUARDIAN</div>
 <h1>The AI Financial Operating System Built for the Military Life Transition</h1>
 <p>Most servicemembers separate without a real financial plan. Phrontis Financial changes that — AI-powered tools built around your pension, TSP, benefits, and next chapter.</p>
@@ -100,24 +110,25 @@ footer .right{text-align:center}
 <a href="/dashboard" class="btn-gold">Access Your Dashboard &rarr;</a>
 <a href="#d" class="btn-outline">Book a CFP Session &rarr;</a>
 </div>
+<div class="hero-demo"><a href="/dashboard?demo=true" class="btn-ghost">View Live Demo &rarr;</a></div>
 <div class="hero-trust">Trusted by Space Force Guardians, Army Officers, and transitioning veterans nationwide</div>
 </div>
 
-<div class="problem">
+<div class="problem fade-rise">
 <div class="inner">
 <div class="section-label">THE CHALLENGE</div>
 <h2>The Transition Gap Is Real</h2>
 <div class="stat-grid">
 <div class="stat-card">
-<div class="number">200,000</div>
+<div class="number" id="q" data-target="200000" data-suffix="" data-comma="true">200,000</div>
 <p>Servicemembers separate annually</p>
 </div>
 <div class="stat-card">
-<div class="number">67%</div>
+<div class="number" id="r" data-target="67" data-suffix="%">67%</div>
 <p>Report financial stress within 12 months of separation</p>
 </div>
 <div class="stat-card">
-<div class="number">11</div>
+<div class="number" id="s" data-target="11" data-suffix="">11</div>
 <p>Financial decisions the average transitioning O-4 must make simultaneously</p>
 </div>
 </div>
@@ -125,7 +136,7 @@ footer .right{text-align:center}
 </div>
 </div>
 
-<section id="a">
+<section id="a" class="fade-rise">
 <div class="section-label">THE PLATFORM</div>
 <h2>One Platform. Your Entire Financial Picture.</h2>
 <div class="feature-grid">
@@ -152,7 +163,7 @@ footer .right{text-align:center}
 </div>
 </section>
 
-<div class="military">
+<div class="military fade-rise">
 <div class="inner">
 <div class="section-label">MILITARY-NATIVE</div>
 <h2>Built Around How the Military Actually Works</h2>
@@ -165,13 +176,13 @@ footer .right{text-align:center}
 </div>
 </div>
 
-<section id="c" class="pricing">
+<section id="c" class="pricing fade-rise">
 <div class="section-label">PRICING</div>
 <h2>Choose Your Mission Tier</h2>
 <div class="pricing-grid">
 <div class="price-card">
 <h3>BASIC</h3>
-<div class="price">$29<span>/month</span></div>
+<div class="price">$49<span>/month</span></div>
 <ul>
 <li>Separation countdown dashboard</li>
 <li>TSP break-even calculator</li>
@@ -183,7 +194,7 @@ footer .right{text-align:center}
 <div class="price-card featured">
 <div class="popular-badge">MOST POPULAR</div>
 <h3>OPERATOR</h3>
-<div class="price">$79<span>/month</span></div>
+<div class="price">$149<span>/month</span></div>
 <ul>
 <li>Everything in Basic</li>
 <li>Weekly AI financial brief</li>
@@ -196,7 +207,7 @@ footer .right{text-align:center}
 </div>
 <div class="price-card">
 <h3>UNIT COMMAND</h3>
-<div class="price">$499<span>/month</span></div>
+<div class="price">$1,999<span>/month</span></div>
 <ul>
 <li>Everything in Operator</li>
 <li>Up to 20 servicemember accounts</li>
@@ -207,19 +218,33 @@ footer .right{text-align:center}
 </ul>
 <a href="#d" class="btn-outline">Contact Us</a>
 </div>
+<div class="price-card" style="border:1px solid rgba(212,175,55,0.4)">
+<h3>INSTALLATION / ENTERPRISE</h3>
+<div class="price" style="font-size:28px">Custom Pricing</div>
+<ul>
+<li>Unlimited accounts</li>
+<li>TAP program integration</li>
+<li>White-labeled platform</li>
+<li>Dedicated CFP team</li>
+<li>Installation pilot eligible</li>
+<li>Federal contract ready</li>
+</ul>
+<a href="#d" class="btn-outline">Contact for Pricing</a>
+</div>
 </div>
 </section>
 
-<div id="b" class="cfp-section">
+<div id="b" class="cfp-section fade-rise">
 <div class="inner">
 <div class="section-label">CFP PARTNERS</div>
 <h2>Are You a CFP Serving Military Clients?</h2>
 <p>Phrontis Financial gives you AI-powered intake, automated separation readiness scoring, and a client management dashboard that triples your capacity without adding headcount. Join as a founding CFP partner.</p>
 <a href="#d" class="btn-gold">Apply as CFP Partner &rarr;</a>
+<div style="margin-top:16px"><a href="/jordan?demo=true" class="btn-ghost">See CFP Dashboard Demo &rarr;</a></div>
 </div>
 </div>
 
-<section id="d" class="form-section">
+<section id="d" class="form-section fade-rise">
 <div class="section-label">GET STARTED</div>
 <h2>Request Early Access</h2>
 <form id="e" name="pf-lead" data-netlify="true" netlify-honeypot="bot-field" action="/success" method="POST">
@@ -302,10 +327,10 @@ footer .right{text-align:center}
 </footer>
 
 <script>
-document.getElementById("e").addEventListener("submit",function(p){
-p.preventDefault();
-var q=new FormData(this);
-fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(q).toString()}).then(function(){
+document.getElementById("e").addEventListener("submit",function(t){
+t.preventDefault();
+var u=new FormData(this);
+fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(u).toString()}).then(function(){
 document.getElementById("o").style.display="block";
 document.getElementById("o").textContent="You are on the list. We will reach out within 24 hours.";
 document.getElementById("e").reset();
@@ -314,6 +339,29 @@ document.getElementById("o").style.display="block";
 document.getElementById("o").textContent="Something went wrong. Please try again.";
 });
 });
+(function(){
+var v=document.getElementById("p");
+var w=v.getContext("2d");
+var x=[];
+function resize(){v.width=v.parentElement.offsetWidth;v.height=v.parentElement.offsetHeight}
+resize();
+window.addEventListener("resize",resize);
+for(var y=0;y<150;y++){x.push({x:Math.random()*v.width,y:Math.random()*v.height,r:Math.random()*1.5+0.5,dx:(Math.random()-0.5)*0.3,dy:(Math.random()-0.5)*0.3,o:Math.random()*0.6+0.2,gold:Math.random()>0.7})}
+function draw(){w.clearRect(0,0,v.width,v.height);for(var z=0;z<x.length;z++){var aa=x[z];w.beginPath();w.arc(aa.x,aa.y,aa.r,0,Math.PI*2);w.fillStyle=aa.gold?"rgba(212,175,55,"+aa.o+")":"rgba(255,255,255,"+aa.o+")";w.fill();aa.x+=aa.dx;aa.y+=aa.dy;if(aa.x<0)aa.x=v.width;if(aa.x>v.width)aa.x=0;if(aa.y<0)aa.y=v.height;if(aa.y>v.height)aa.y=0}requestAnimationFrame(draw)}
+draw();
+})();
+(function(){
+var ab=document.querySelectorAll(".fade-rise");
+var ac=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add("visible");ac.unobserve(entry.target)}})},{threshold:0.1});
+ab.forEach(function(el){ac.observe(el)});
+})();
+(function(){
+var ad=[document.getElementById("q"),document.getElementById("r"),document.getElementById("s")];
+var ae=false;
+var af=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting&&!ae){ae=true;af.disconnect();ad.forEach(function(el){var target=parseInt(el.getAttribute("data-target"));var suffix=el.getAttribute("data-suffix");var useComma=el.getAttribute("data-comma")==="true";var duration=2000;var start=performance.now();function tick(now){var elapsed=now-start;var progress=Math.min(elapsed/duration,1);var eased=1-Math.pow(1-progress,3);var current=Math.round(target*eased);el.textContent=(useComma?current.toLocaleString():current)+suffix;if(progress<1)requestAnimationFrame(tick)}
+requestAnimationFrame(tick)})}})},{threshold:0.3});
+if(ad[0])af.observe(ad[0].closest(".stat-grid"));
+})();
 </script>
 </body>
 </html>

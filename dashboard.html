@@ -69,6 +69,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <div class="login-overlay" id="a">
 <h1>PHRONTIS FINANCIAL</h1>
 <input type="password" id="b" placeholder="Enter command password" onkeyup="if(this.value==='PFCommand2026!'){document.getElementById('a').style.display='none';document.getElementById('c').style.display='block'}else if(this.value.length>5){document.getElementById('d').style.display='block'}" autofocus>
+<script>if(new URLSearchParams(window.location.search).get("demo")==="true"){document.getElementById("a").style.display="none";document.getElementById("c").style.display="block"}</script>
 <div class="hint">Authorized personnel only</div>
 <div class="error" id="d">Access denied</div>
 </div>
