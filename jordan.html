@@ -24,7 +24,7 @@ body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1
 .grid-4{grid-template-columns:repeat(4,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-2{grid-template-columns:repeat(2,1fr)}
-.card{background:#111827;padding:24px;border:1px solid rgba(212,175,55,0.15);border-radius:8px}
+.card{background:#111827;padding:24px;border:1px solid rgba(212,175,55,0.15);border-radius:8px;border-left:3px solid rgba(212,175,55,0.3)}
 .card .label{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:8px;text-transform:uppercase}
 .card .value{font-size:28px;font-weight:800;color:#ffffff}
 .card .sub{font-size:12px;color:#64748b;margin-top:4px}
@@ -54,6 +54,16 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 .capacity-item .cap-val{font-size:18px;color:#94a3b8}
 .capacity-item.after .cap-val{color:#d4af37;font-weight:700}
 .capacity-callout{background:rgba(212,175,55,0.08);color:#d4af37;padding:14px;font-size:16px;font-weight:700;border-radius:6px}
+.capacity-big{font-size:64px;font-weight:800;color:#d4af37;line-height:1;margin-bottom:4px;letter-spacing:-2px}
+.capacity-big-sub{font-size:14px;color:#94a3b8;margin-bottom:20px}
+.sparkline{display:flex;align-items:flex-end;gap:2px;height:20px;margin-top:8px}
+.sparkline span{display:block;width:6px;border-radius:1px;background:rgba(212,175,55,0.4)}
+.readiness-bar{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;width:80px;display:inline-block;vertical-align:middle;margin-left:6px;overflow:hidden}
+.readiness-fill{height:100%;border-radius:2px}
+.revenue-card{background:#111827;border:1px solid rgba(212,175,55,0.15);border-left:3px solid #d4af37;border-radius:8px;padding:24px;margin-top:12px;text-align:center}
+.revenue-card .rev-label{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.revenue-card .rev-val{font-size:28px;font-weight:800;color:#d4af37}
+.revenue-card .rev-detail{font-size:13px;color:#94a3b8;margin-top:4px}
 .terms-card{background:#111827;border:1px solid rgba(212,175,55,0.2);padding:24px;border-radius:8px}
 .terms-card h3{color:#d4af37;font-size:11px;letter-spacing:3px;margin-bottom:16px;text-transform:uppercase}
 .terms-card ul{list-style:none}
@@ -87,10 +97,10 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <div class="row">
 <div class="row-title">PRACTICE METRICS</div>
 <div class="card-grid grid-4">
-<div class="card"><div class="label">ACTIVE CLIENTS</div><div class="value">3</div><div class="sub">Demo accounts</div></div>
-<div class="card"><div class="label">AVG FINANCIAL READINESS</div><div class="value">68/100</div><div class="sub">Across all clients</div></div>
-<div class="card"><div class="label">ACTION ITEMS THIS WEEK</div><div class="value">7</div><div class="sub">Across all clients</div></div>
-<div class="card"><div class="label">PIPELINE VALUE (AUM)</div><div class="value">$1.24M</div><div class="sub">Total assets under management</div></div>
+<div class="card"><div class="label">ACTIVE CLIENTS</div><div class="value">3</div><div class="sub">Demo accounts</div><div class="sparkline"><span style="height:40%"></span><span style="height:40%"></span><span style="height:60%"></span><span style="height:60%"></span><span style="height:80%"></span><span style="height:100%"></span></div></div>
+<div class="card"><div class="label">AVG FINANCIAL READINESS</div><div class="value">68/100</div><div class="sub">Across all clients</div><div class="sparkline"><span style="height:50%"></span><span style="height:55%"></span><span style="height:60%"></span><span style="height:58%"></span><span style="height:65%"></span><span style="height:68%"></span></div></div>
+<div class="card"><div class="label">ACTION ITEMS THIS WEEK</div><div class="value">7</div><div class="sub">Across all clients</div><div class="sparkline"><span style="height:80%"></span><span style="height:60%"></span><span style="height:90%"></span><span style="height:50%"></span><span style="height:70%"></span><span style="height:58%"></span></div></div>
+<div class="card"><div class="label">PIPELINE VALUE (AUM)</div><div class="value">$1.24M</div><div class="sub">Total assets under management</div><div class="sparkline"><span style="height:30%"></span><span style="height:40%"></span><span style="height:50%"></span><span style="height:65%"></span><span style="height:80%"></span><span style="height:100%"></span></div></div>
 </div>
 </div>
 
@@ -99,7 +109,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <div class="card" style="overflow-x:auto">
 <table>
 <tr><th>NAME</th><th>BRANCH</th><th>SEPARATION DATE</th><th>READINESS</th><th>PRIORITY</th><th>ACTION</th></tr>
-<tr class="client-row" onclick="togglePanel('e')"><td>CPT James Riordan</td><td>Army</td><td>March 2027</td><td>58/100</td><td><span class="pill pill-high">HIGH</span></td><td>SBP election needed</td></tr>
+<tr class="client-row" onclick="togglePanel('e')"><td>CPT James Riordan</td><td>Army</td><td>March 2027</td><td>58<div class="readiness-bar"><div class="readiness-fill" style="width:58%;background:#ef4444"></div></div></td><td><span class="pill pill-high">HIGH</span></td><td>SBP election needed</td></tr>
 </table>
 <div class="expand-panel" id="e">
 <h4>CPT JAMES RIORDAN - BRIEF</h4>
@@ -113,7 +123,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <button class="btn-small">Schedule CFP Call</button>
 </div>
 <table>
-<tr class="client-row" onclick="togglePanel('g')"><td>MSG Denise Watkins</td><td>Air Force</td><td>November 2026</td><td>74/100</td><td><span class="pill pill-medium">MEDIUM</span></td><td>TSP rebalance</td></tr>
+<tr class="client-row" onclick="togglePanel('g')"><td>MSG Denise Watkins</td><td>Air Force</td><td>November 2026</td><td>74<div class="readiness-bar"><div class="readiness-fill" style="width:74%;background:#f59e0b"></div></div></td><td><span class="pill pill-medium">MEDIUM</span></td><td>TSP rebalance</td></tr>
 </table>
 <div class="expand-panel" id="g">
 <h4>MSG DENISE WATKINS - BRIEF</h4>
@@ -127,7 +137,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <button class="btn-small">Schedule CFP Call</button>
 </div>
 <table>
-<tr class="client-row" onclick="togglePanel('i')"><td>MAJ Marcus Webb</td><td>Army</td><td>August 2027</td><td>64/100</td><td><span class="pill pill-high">HIGH</span></td><td>VA claim + SBP pending</td></tr>
+<tr class="client-row" onclick="togglePanel('i')"><td>MAJ Marcus Webb</td><td>Army</td><td>August 2027</td><td>64<div class="readiness-bar"><div class="readiness-fill" style="width:64%;background:#ef4444"></div></div></td><td><span class="pill pill-high">HIGH</span></td><td>VA claim + SBP pending</td></tr>
 </table>
 <div class="expand-panel" id="i">
 <h4>MAJ MARCUS WEBB - BRIEF</h4>
@@ -154,17 +164,23 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <div class="row">
 <div class="row-title">CFP CAPACITY CALCULATOR</div>
 <div class="capacity-card">
+<div class="capacity-big">3x</div>
+<div class="capacity-big-sub">Practice capacity. Same license. Same hours.</div>
 <div class="capacity-row">
 <div class="capacity-item">
-<div class="cap-label">WITHOUT PHRONTIS FINANCIAL</div>
-<div class="cap-val">80 clients max | $192,000 AUM revenue/yr</div>
+<div class="cap-label">WITHOUT PHRONTIS</div>
+<div class="cap-val">80 clients | $192K/yr</div>
 </div>
 <div class="capacity-item after">
-<div class="cap-label">WITH PHRONTIS FINANCIAL</div>
-<div class="cap-val">250 clients max | $600,000 AUM revenue/yr</div>
+<div class="cap-label">WITH PHRONTIS</div>
+<div class="cap-val">250 clients | $600K/yr</div>
 </div>
 </div>
-<div class="capacity-callout">3x practice capacity. Same license. Same hours.</div>
+</div>
+<div class="revenue-card">
+<div class="rev-label">REVENUE IMPACT</div>
+<div class="rev-val">$1.2M/yr</div>
+<div class="rev-detail">250 clients x $4,800 avg AUM revenue = $1.2M/yr practice</div>
 </div>
 </div>
 

@@ -17,7 +17,8 @@ body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1
 .top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;border-bottom:1px solid rgba(212,175,55,0.1)}
 .top-bar .left{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700}
 .top-bar .right{font-size:12px;color:#94a3b8}
-.sep-badge{color:#d4af37;padding:10px 32px;font-size:11px;font-weight:700;letter-spacing:2px;text-align:center;border-bottom:1px solid rgba(212,175,55,0.08);background:rgba(212,175,55,0.04)}
+.sep-badge{color:#d4af37;padding:10px 32px;font-size:11px;font-weight:700;letter-spacing:2px;text-align:center;border-bottom:1px solid rgba(212,175,55,0.08);background:rgba(212,175,55,0.04);animation:badge-pulse 3s ease-in-out infinite}
+@keyframes badge-pulse{0%,100%{background:rgba(212,175,55,0.04)}50%{background:rgba(212,175,55,0.09)}}
 .content{max-width:1200px;margin:0 auto;padding:0 32px}
 .row{padding:40px 0 0}
 .row-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:16px;text-transform:uppercase}
@@ -25,14 +26,14 @@ body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1
 .grid-4{grid-template-columns:repeat(4,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-2{grid-template-columns:repeat(2,1fr)}
-.card{background:#111827;padding:24px;border:1px solid rgba(212,175,55,0.15);border-radius:8px}
+.card{background:#111827;padding:24px;border:1px solid rgba(212,175,55,0.15);border-radius:8px;border-left:3px solid rgba(212,175,55,0.3)}
 .card .label{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:8px;text-transform:uppercase}
 .card .value{font-size:28px;font-weight:800;color:#ffffff}
 .card .sub{font-size:12px;color:#64748b;margin-top:4px}
 .asset-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px}
 .asset-row .name{color:#94a3b8}
 .asset-row .val{color:#d4af37;font-weight:700}
-.net-worth-total{font-size:32px;font-weight:800;color:#d4af37;text-align:center;padding:20px 0 0;border-top:1px solid rgba(212,175,55,0.2);margin-top:12px}
+.net-worth-total{font-size:48px;font-weight:800;color:#d4af37;text-align:center;padding:24px 0 0;border-top:1px solid rgba(212,175,55,0.2);margin-top:12px;letter-spacing:-1px}
 .tsp-side{display:flex;flex-direction:column;gap:10px}
 .tsp-label{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;text-transform:uppercase}
 .tsp-val{font-size:28px;font-weight:800;color:#ffffff}
@@ -59,6 +60,14 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 .brief-card{background:#111827;border:1px solid rgba(212,175,55,0.15);padding:24px;border-radius:8px}
 .brief-card .brief-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:16px;text-transform:uppercase}
 .brief-card .brief-body{font-size:13px;color:#94a3b8;line-height:1.8;white-space:pre-line}
+.progress-track{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:8px;overflow:hidden}
+.progress-fill{height:100%;background:#d4af37;border-radius:2px}
+.row-critical{background:rgba(239,68,68,0.08)}
+.row-action{background:rgba(245,158,11,0.08)}
+.brief-row{display:flex;gap:24px;align-items:flex-start}
+.brief-row .brief-card{flex:1}
+.gauge-wrap{flex-shrink:0;width:140px;text-align:center}
+.gauge-wrap .gauge-label{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-top:8px;text-transform:uppercase}
 .row:last-child{padding-bottom:48px}
 @media(max-width:768px){
 .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
@@ -86,10 +95,10 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <div class="row">
 <div class="row-title">COUNTDOWN</div>
 <div class="card-grid grid-4">
-<div class="card"><div class="label">DAYS TO SEPARATION</div><div class="value" id="f"></div><div class="sub">August 1, 2027</div></div>
-<div class="card"><div class="label">TSP FINAL CONTRIBUTION WINDOW</div><div class="value">APR 2027</div><div class="sub">Last month to maximize</div></div>
-<div class="card"><div class="label">SBP ELECTION DEADLINE</div><div class="value">60 DAYS</div><div class="sub">Before separation date</div></div>
-<div class="card"><div class="label">PENSION START DATE</div><div class="value">SEP 1</div><div class="sub">September 1, 2027</div></div>
+<div class="card"><div class="label">DAYS TO SEPARATION</div><div class="value" id="f"></div><div class="sub">August 1, 2027</div><div class="progress-track"><div class="progress-fill" id="r"></div></div></div>
+<div class="card"><div class="label">TSP FINAL CONTRIBUTION WINDOW</div><div class="value">APR 2027</div><div class="sub">Last month to maximize</div><div class="progress-track"><div class="progress-fill" id="s"></div></div></div>
+<div class="card"><div class="label">SBP ELECTION DEADLINE</div><div class="value">60 DAYS</div><div class="sub">Before separation date</div><div class="progress-track"><div class="progress-fill" id="t"></div></div></div>
+<div class="card"><div class="label">PENSION START DATE</div><div class="value">SEP 1</div><div class="sub">September 1, 2027</div><div class="progress-track"><div class="progress-fill" id="u"></div></div></div>
 </div>
 </div>
 
@@ -171,8 +180,8 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 <tr><td>TSP Roth Conversion</td><td>Before Aug 2027</td><td><span class="pill pill-pending">Pending</span></td><td><span class="pill pill-high">High</span></td><td>Model scenarios</td></tr>
 <tr><td>SBP Election</td><td>60 days pre-sep</td><td><span class="pill pill-pending">Pending</span></td><td><span class="pill pill-high">High</span></td><td>Calculate breakeven</td></tr>
 <tr><td>FEHB to Civilian Insurance</td><td>Sep 2027</td><td><span class="pill pill-pending">Pending</span></td><td><span class="pill pill-medium">Medium</span></td><td>Compare ACA options</td></tr>
-<tr><td>VA Disability Claim</td><td>File now</td><td><span class="pill pill-action">Action Required</span></td><td><span class="pill pill-high">High</span></td><td>Contact VSO</td></tr>
-<tr><td>Life Insurance Gap Analysis</td><td>Immediate</td><td><span class="pill pill-pending">Pending</span></td><td><span class="pill pill-high">High</span></td><td>$280,000 gap above SGLI</td></tr>
+<tr class="row-action"><td>VA Disability Claim</td><td>File now</td><td><span class="pill pill-action">Action Required</span></td><td><span class="pill pill-high">High</span></td><td>Contact VSO</td></tr>
+<tr class="row-critical"><td>Life Insurance Gap Analysis</td><td>Immediate</td><td><span class="pill pill-pending">Pending</span></td><td><span class="pill pill-high">High</span></td><td>$280,000 gap above SGLI</td></tr>
 <tr><td>Emergency Fund - 6 months civilian</td><td>Q1 2027</td><td><span class="pill pill-progress">In Progress</span></td><td><span class="pill pill-medium">Medium</span></td><td>Target $28,000</td></tr>
 <tr><td>Home refinance or sell decision</td><td>Q2 2027</td><td><span class="pill pill-pending">Pending</span></td><td><span class="pill pill-medium">Medium</span></td><td>Evaluate Fayetteville market</td></tr>
 </table>
@@ -181,7 +190,17 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b
 
 <div class="row">
 <div class="row-title">WEEKLY AI BRIEF</div>
-<div class="brief-card">
+<div class="brief-row">
+<div class="gauge-wrap">
+<svg width="120" height="120" viewBox="0 0 120 120">
+<circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+<circle cx="60" cy="60" r="52" fill="none" stroke="#d4af37" stroke-width="8" stroke-dasharray="209 327" stroke-dashoffset="-82" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+<text x="60" y="54" text-anchor="middle" fill="#d4af37" font-family="Arial" font-size="28" font-weight="800">64</text>
+<text x="60" y="72" text-anchor="middle" fill="#64748b" font-family="Arial" font-size="11" letter-spacing="1">/100</text>
+</svg>
+<div class="gauge-label">READINESS</div>
+</div>
+<div class="brief-card" style="flex:1">
 <div class="brief-title" id="q"></div>
 <div class="brief-body">Financial Readiness Score: 64/100
 
@@ -197,6 +216,7 @@ Action items:
 (1) Contact VSO to initiate VA disability claim
 (2) Schedule SBP breakeven analysis with CFP
 (3) Request term life insurance quotes - lock active duty rates</div>
+</div>
 </div>
 </div>
 </div>
@@ -225,6 +245,22 @@ var ag=Math.round((ae-(ad-af))/(ad-af)*100);
 document.getElementById("p").textContent="Based on your projected post-separation income from pension + spouse income, Roth conversion strategy recommended for "+Math.max(30,Math.min(60,ag+50))+"% of balance. Roth TSP after-tax advantage: $"+Math.round(ae-(ad-af)).toLocaleString()+" over Traditional at 28% withdrawal rate.";
 var ah=s.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
 document.getElementById("q").textContent="WEEKLY SEPARATION BRIEF - Week of "+ah;
+var totalDays=Math.ceil((r-new Date(2024,7,1))/(1000*60*60*24));
+var elapsed=totalDays-t;
+var sepPct=Math.min(100,Math.max(0,Math.round(elapsed/totalDays*100)));
+document.getElementById("r").style.width=sepPct+"%";
+var tspEnd=new Date(2027,3,1);
+var tspTotal=Math.ceil((tspEnd-new Date(2024,7,1))/(1000*60*60*24));
+var tspElapsed=tspTotal-Math.max(0,Math.ceil((tspEnd-s)/(1000*60*60*24)));
+document.getElementById("s").style.width=Math.min(100,Math.max(0,Math.round(tspElapsed/tspTotal*100)))+"%";
+var sbpEnd=new Date(r.getTime()-60*24*60*60*1000);
+var sbpTotal=Math.ceil((sbpEnd-new Date(2024,7,1))/(1000*60*60*24));
+var sbpElapsed=sbpTotal-Math.max(0,Math.ceil((sbpEnd-s)/(1000*60*60*24)));
+document.getElementById("t").style.width=Math.min(100,Math.max(0,Math.round(sbpElapsed/sbpTotal*100)))+"%";
+var penEnd=new Date(2027,8,1);
+var penTotal=Math.ceil((penEnd-new Date(2024,7,1))/(1000*60*60*24));
+var penElapsed=penTotal-Math.max(0,Math.ceil((penEnd-s)/(1000*60*60*24)));
+document.getElementById("u").style.width=Math.min(100,Math.max(0,Math.round(penElapsed/penTotal*100)))+"%";
 </script>
 </body>
 </html>
