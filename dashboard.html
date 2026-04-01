@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrontis Financial — Separation Command</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1.6}
+.login-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0e1a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.login-overlay h1{font-size:13px;letter-spacing:4px;color:#d4af37;margin-bottom:32px}
+.login-overlay input{width:300px;padding:14px;background:#1a2035;border:1px solid rgba(212,175,55,0.3);color:#fff;font-family:Arial,sans-serif;font-size:14px;text-align:center}
+.login-overlay .hint{color:#6b7280;font-size:12px;margin-top:12px}
+.login-overlay .error{color:#ef4444;font-size:12px;margin-top:8px;display:none}
+.dashboard{display:none}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;border-bottom:1px solid rgba(212,175,55,0.15)}
+.top-bar .left{font-size:13px;letter-spacing:3px;color:#d4af37;font-weight:700}
+.top-bar .right{font-size:13px;color:#b0b8c8}
+.sep-badge{background:rgba(212,175,55,0.15);color:#d4af37;padding:8px 24px;font-size:13px;font-weight:700;letter-spacing:1px;text-align:center;margin:16px 32px}
+.row{padding:16px 32px}
+.row-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:12px}
+.card-grid{display:grid;gap:16px}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:#1a2035;padding:24px;border:1px solid rgba(212,175,55,0.1)}
+.card .label{font-size:11px;letter-spacing:2px;color:#6b7280;font-weight:700;margin-bottom:8px}
+.card .value{font-size:28px;font-weight:800;color:#d4af37}
+.card .sub{font-size:12px;color:#b0b8c8;margin-top:4px}
+.asset-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px}
+.asset-row .name{color:#b0b8c8}
+.asset-row .val{color:#d4af37;font-weight:700}
+.net-worth-total{font-size:36px;font-weight:800;color:#d4af37;text-align:center;padding:24px;border-top:2px solid #d4af37;margin-top:16px}
+.tsp-side{display:flex;flex-direction:column;gap:12px}
+.tsp-label{font-size:11px;letter-spacing:2px;color:#6b7280;font-weight:700}
+.tsp-val{font-size:24px;font-weight:800;color:#d4af37}
+.tsp-detail{font-size:13px;color:#b0b8c8}
+.rec-box{background:rgba(212,175,55,0.1);border:1px solid #d4af37;padding:16px;margin-top:16px;font-size:13px;color:#d4af37}
+.timeline{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding:16px 0;position:relative}
+.tl-item{flex:1;min-width:140px;text-align:center;position:relative;padding-top:32px}
+.tl-item::before{content:"";position:absolute;top:10px;left:0;right:0;height:2px;background:rgba(212,175,55,0.3)}
+.tl-item::after{content:"";position:absolute;top:4px;left:50%;transform:translateX(-50%);width:14px;height:14px;background:#d4af37;border-radius:50%;z-index:1}
+.tl-item.sep-date::after{width:20px;height:20px;top:1px}
+.tl-item .tl-date{font-size:10px;letter-spacing:1px;color:#d4af37;font-weight:700;margin-bottom:4px}
+.tl-item .tl-text{font-size:11px;color:#b0b8c8}
+.tl-item.sep-date .tl-date{font-size:12px}
+.tl-item.sep-date .tl-text{color:#ffffff;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;border-bottom:2px solid rgba(212,175,55,0.3);color:#d4af37;font-size:11px;letter-spacing:1px;font-weight:700}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.status-pending{color:#f59e0b}
+.status-action{color:#ef4444;font-weight:700}
+.status-critical{color:#ef4444;font-weight:700;text-transform:uppercase}
+.risk-high{color:#ef4444}
+.risk-medium{color:#f59e0b}
+.brief-card{background:#1a2035;border:2px solid #d4af37;padding:32px}
+.brief-card .brief-title{font-size:13px;letter-spacing:2px;color:#d4af37;font-weight:700;margin-bottom:16px}
+.brief-card .brief-body{font-size:14px;color:#b0b8c8;line-height:1.8;white-space:pre-line}
+@media(max-width:768px){
+.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
+.top-bar{flex-direction:column;gap:8px;text-align:center}
+.row{padding:16px}
+.sep-badge{margin:16px}
+}
+</style>
+</head>
+<body>
+<div class="login-overlay" id="a">
+<h1>PHRONTIS FINANCIAL</h1>
+<input type="password" id="b" placeholder="Enter command password" onkeyup="if(this.value==='PFCommand2026!'){document.getElementById('a').style.display='none';document.getElementById('c').style.display='block'}else if(this.value.length>5){document.getElementById('d').style.display='block'}" autofocus>
+<div class="hint">Authorized personnel only</div>
+<div class="error" id="d">Access denied</div>
+</div>
+
+<div class="dashboard" id="c">
+<div class="top-bar">
+<div class="left">PHRONTIS FINANCIAL &mdash; SEPARATION COMMAND</div>
+<div class="right">GUARDIAN DAVID PARKER</div>
+</div>
+<div class="sep-badge" id="e"></div>
+
+<div class="row">
+<div class="row-title">COUNTDOWN</div>
+<div class="card-grid grid-4">
+<div class="card"><div class="label">DAYS TO SEPARATION</div><div class="value" id="f"></div><div class="sub">August 1, 2027</div></div>
+<div class="card"><div class="label">TSP FINAL CONTRIBUTION WINDOW</div><div class="value">APR 2027</div><div class="sub">Last month to maximize</div></div>
+<div class="card"><div class="label">SBP ELECTION DEADLINE</div><div class="value">60 DAYS</div><div class="sub">Before separation date</div></div>
+<div class="card"><div class="label">PENSION START DATE</div><div class="value">SEP 1</div><div class="sub">September 1, 2027</div></div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">NET WORTH SNAPSHOT</div>
+<div class="card-grid grid-2">
+<div class="card">
+<div class="label">ASSETS</div>
+<div class="asset-row"><span class="name">TSP Balance</span><span class="val">$387,000</span></div>
+<div class="asset-row"><span class="name">Roth IRA</span><span class="val">$45,000</span></div>
+<div class="asset-row"><span class="name">Brokerage Account</span><span class="val">$28,000</span></div>
+<div class="asset-row"><span class="name">Home Equity (Herndon VA)</span><span class="val">$180,000</span></div>
+<div class="asset-row"><span class="name">Phrontis Holdings LLC Value</span><span class="val">$0 &rarr; $2.4M proj</span></div>
+<div class="asset-row"><span class="name">Arktyx Inc Equity (10M shares)</span><span class="val">Speculative</span></div>
+<div class="asset-row"><span class="name">YirahFit LLC Value</span><span class="val">Speculative</span></div>
+<div class="asset-row"><span class="name">Sarah Parker RN Income (Annual)</span><span class="val">$94,000</span></div>
+<div class="asset-row" style="border-bottom:2px solid #d4af37"><span class="name" style="font-weight:700;color:#fff">Total Liquid Assets</span><span class="val">$640,000</span></div>
+</div>
+<div class="card">
+<div class="label">LIABILITIES</div>
+<div class="asset-row"><span class="name">Mortgage Balance</span><span class="val">TBD</span></div>
+<div class="asset-row" style="border-bottom:2px solid #d4af37"><span class="name" style="font-weight:700;color:#fff">Total Liabilities</span><span class="val">TBD</span></div>
+<div class="net-worth-total" id="g">NET WORTH: $640,000+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">TSP OPTIMIZER</div>
+<div class="card-grid grid-2">
+<div class="card">
+<div class="tsp-side">
+<div class="tsp-label">TRADITIONAL TSP</div>
+<div class="tsp-val" id="h">$290,000</div>
+<div class="tsp-detail">Projected at separation: <strong id="i"></strong></div>
+<div class="tsp-detail">Estimated tax at withdrawal (28%): <span style="color:#ef4444" id="j"></span></div>
+<div class="tsp-detail">After-tax value: <strong id="k"></strong></div>
+</div>
+</div>
+<div class="card">
+<div class="tsp-side">
+<div class="tsp-label">ROTH TSP</div>
+<div class="tsp-val" id="l">$97,000</div>
+<div class="tsp-detail">Projected at separation: <strong id="m"></strong></div>
+<div class="tsp-detail">Tax at withdrawal: <span style="color:#22c55e">$0 (tax-free)</span></div>
+<div class="tsp-detail">After-tax value: <strong id="n"></strong></div>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:16px">
+<div class="tsp-label" style="margin-bottom:8px">ASSUMPTIONS</div>
+<div style="display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:#b0b8c8">
+<span>Years to separation: <strong id="o"></strong></span>
+<span>Annual contribution: <strong>$23,000</strong></span>
+<span>Expected return: <strong>7%</strong></span>
+</div>
+</div>
+<div class="rec-box" id="p"></div>
+</div>
+
+<div class="row">
+<div class="row-title">MILESTONE TIMELINE</div>
+<div class="card" style="overflow-x:auto">
+<div class="timeline">
+<div class="tl-item"><div class="tl-date">TODAY</div><div class="tl-text">Separation planning begins</div></div>
+<div class="tl-item"><div class="tl-date">Q2 2026</div><div class="tl-text">Arktyx Space Symposium | YirahFit App Store Launch</div></div>
+<div class="tl-item"><div class="tl-date">Q3 2026</div><div class="tl-text">PLN Command $10K/mo milestone target</div></div>
+<div class="tl-item"><div class="tl-date">Q4 2026</div><div class="tl-text">Phrontis Financial Jordan co-founder conversation</div></div>
+<div class="tl-item"><div class="tl-date">Q1 2027</div><div class="tl-text">SBP election window opens | File VA disability claim</div></div>
+<div class="tl-item"><div class="tl-date">Q2 2027</div><div class="tl-text">TSP final contribution | FEHB transition research</div></div>
+<div class="tl-item sep-date"><div class="tl-date">AUGUST 2027</div><div class="tl-text">SEPARATION DATE</div></div>
+<div class="tl-item"><div class="tl-date">SEP 2027</div><div class="tl-text">Pension begins | VA benefits activate | Full-time Phrontis</div></div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">DECISION MATRIX</div>
+<div class="card" style="overflow-x:auto">
+<table>
+<tr><th>DECISION</th><th>DEADLINE</th><th>STATUS</th><th>RISK</th><th>ACTION REQUIRED</th></tr>
+<tr><td>TSP Roth Conversion</td><td>Before Sep 2027</td><td class="status-pending">Pending</td><td class="risk-high">High</td><td>Model scenarios</td></tr>
+<tr><td>SBP Election</td><td>60 days pre-sep</td><td class="status-pending">Pending</td><td class="risk-high">High</td><td>Calculate breakeven</td></tr>
+<tr><td>FEHB to Civilian Insurance</td><td>Sep 2027</td><td class="status-pending">Pending</td><td class="risk-medium">Medium</td><td>Compare ACA options</td></tr>
+<tr><td>VA Disability Claim</td><td>File now</td><td class="status-action">ACTION REQUIRED</td><td class="risk-high">High</td><td>Contact VSO</td></tr>
+<tr><td>83(b) Election - Arktyx</td><td style="color:#ef4444;font-weight:700">OVERDUE</td><td class="status-critical">CRITICAL</td><td class="risk-high">High</td><td>Mail to IRS Kansas City immediately</td></tr>
+<tr><td>Bylaws + Board Consent + FSPA</td><td style="color:#ef4444;font-weight:700">OVERDUE</td><td class="status-critical">CRITICAL</td><td class="risk-high">High</td><td>Sign this week</td></tr>
+<tr><td>Mercury Bank Account - Arktyx</td><td style="color:#ef4444;font-weight:700">OVERDUE</td><td class="status-critical">CRITICAL</td><td class="risk-medium">Medium</td><td>Open this week</td></tr>
+<tr><td>Virginia Foreign Qualification - Arktyx</td><td style="color:#ef4444;font-weight:700">OVERDUE</td><td class="status-critical">CRITICAL</td><td class="risk-medium">Medium</td><td>File with CSC</td></tr>
+</table>
+</div>
+</div>
+
+<div class="row" style="padding-bottom:48px">
+<div class="row-title">WEEKLY AI BRIEF</div>
+<div class="brief-card">
+<div class="brief-title" id="q"></div>
+<div class="brief-body">Financial Readiness Score: 71/100
+
+Key action this week: The 83(b) election for Arktyx Inc is CRITICAL. Every day without filing increases your tax exposure on equity appreciation. Mail to IRS Kansas City this week.
+
+Secondary: TSP contribution maximization - confirm $23,000 annual limit is on track.
+
+Pension modeling update: At current trajectory, military pension + LLC distributions = $14,500/mo combined by Month 6 post-separation.
+
+Action items:
+(1) Sign Arktyx Bylaws this week
+(2) Open Mercury account
+(3) Schedule SBP breakeven call with Jordan</div>
+</div>
+</div>
+</div>
+
+<script>
+var r=new Date(2027,7,1);
+var s=new Date();
+var t=Math.ceil((r-s)/(1000*60*60*24));
+document.getElementById("f").textContent=t;
+document.getElementById("e").textContent="SEPARATION T-MINUS: "+t+" DAYS";
+var u=t/365.25;
+document.getElementById("o").textContent=u.toFixed(1);
+function projectTSP(v,w,x,y){var z=v;var aa=(Math.pow(1+x,1/12))-1;var ab=w/12;for(var ac=0;ac<Math.floor(y*12);ac++){z=z*(1+aa)+ab}return z}
+var ad=projectTSP(290000,23000,0.07,u);
+var ae=projectTSP(97000,23000,0.07,u);
+var af=ad*0.28;
+document.getElementById("i").textContent="$"+Math.round(ad).toLocaleString();
+document.getElementById("j").textContent="-$"+Math.round(af).toLocaleString();
+document.getElementById("k").textContent="$"+Math.round(ad-af).toLocaleString();
+document.getElementById("m").textContent="$"+Math.round(ae).toLocaleString();
+document.getElementById("n").textContent="$"+Math.round(ae).toLocaleString();
+var ag=Math.round((ae-(ad-af))/(ad-af)*100);
+document.getElementById("p").textContent="Based on your projected post-separation income from pension + LLC distributions, Roth conversion strategy recommended for "+Math.max(30,Math.min(60,ag+50))+"% of balance. Roth TSP after-tax advantage: $"+Math.round(ae-(ad-af)).toLocaleString()+" over Traditional at 28% withdrawal rate.";
+var ah=s.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+document.getElementById("q").textContent="WEEKLY SEPARATION BRIEF - Week of "+ah;
+</script>
+</body>
+</html>

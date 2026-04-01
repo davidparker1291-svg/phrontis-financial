@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrontis Financial — AI Military Financial Operating System</title>
+<meta name="description" content="The AI-powered financial operating system built for servicemembers transitioning to civilian life. TSP optimization, separation planning, pension modeling, and CFP integration.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1.6}
+a{color:#d4af37;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:18px 48px;border-bottom:1px solid rgba(212,175,55,0.15)}
+nav div:first-child{color:#d4af37;font-size:13px;letter-spacing:4px;font-weight:700}
+nav div:last-child{display:flex;gap:32px;font-size:14px}
+nav div:last-child a{color:#ffffff;font-weight:500}
+nav div:last-child a:hover{color:#d4af37}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px}
+.hero-badge{color:#d4af37;font-size:11px;letter-spacing:3px;font-weight:700;margin-bottom:24px}
+.hero h1{font-size:48px;font-weight:800;max-width:900px;line-height:1.15;margin-bottom:24px}
+.hero p{font-size:18px;color:#b0b8c8;max-width:720px;margin-bottom:40px}
+.hero-ctas{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.btn-gold{background:#d4af37;color:#0a0e1a;padding:14px 32px;font-size:15px;font-weight:700;border:none;cursor:pointer;display:inline-block}
+.btn-outline{border:2px solid #d4af37;color:#d4af37;padding:12px 32px;font-size:15px;font-weight:700;background:transparent;cursor:pointer;display:inline-block}
+.hero-trust{font-size:13px;color:#6b7280}
+section{padding:80px 48px;max-width:1200px;margin:0 auto}
+.section-label{color:#d4af37;font-size:11px;letter-spacing:3px;font-weight:700;margin-bottom:12px}
+h2{font-size:36px;font-weight:800;margin-bottom:24px}
+.problem{background:#1a2035;padding:80px 48px;text-align:center}
+.problem .inner{max-width:1200px;margin:0 auto}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:40px 0}
+.stat-card{background:#0a0e1a;padding:40px 24px;border:1px solid rgba(212,175,55,0.2)}
+.stat-card .number{font-size:42px;font-weight:800;color:#d4af37;margin-bottom:8px}
+.stat-card p{color:#b0b8c8;font-size:14px}
+.problem .body-text{color:#b0b8c8;font-size:15px;max-width:800px;margin:32px auto 0;line-height:1.8}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.feature-card{background:#1a2035;padding:32px;border:1px solid rgba(212,175,55,0.1)}
+.feature-icon{width:48px;height:48px;background:rgba(212,175,55,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:#d4af37;font-size:20px;font-weight:700}
+.feature-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.feature-card p{color:#b0b8c8;font-size:14px}
+.military{background:#1a2035;padding:80px 48px}
+.military .inner{max-width:1200px;margin:0 auto;border-left:4px solid #d4af37;padding-left:32px}
+.military p{color:#b0b8c8;font-size:15px;margin-bottom:24px;line-height:1.8}
+.badge-row{display:flex;gap:16px;flex-wrap:wrap}
+.badge{background:#0a0e1a;border:1px solid #d4af37;padding:8px 20px;font-size:12px;font-weight:700;color:#d4af37;letter-spacing:1px}
+.pricing{text-align:center}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.price-card{background:#1a2035;padding:40px 28px;border:1px solid rgba(212,175,55,0.1);text-align:left;display:flex;flex-direction:column}
+.price-card.featured{border:2px solid #d4af37;position:relative}
+.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#d4af37;color:#0a0e1a;font-size:11px;font-weight:700;padding:4px 16px;letter-spacing:1px}
+.price-card h3{font-size:22px;font-weight:700;margin-bottom:4px}
+.price{font-size:36px;font-weight:800;color:#d4af37;margin-bottom:4px}
+.price span{font-size:14px;font-weight:400;color:#b0b8c8}
+.price-card ul{list-style:none;margin:24px 0;flex:1}
+.price-card ul li{padding:6px 0;font-size:14px;color:#b0b8c8}
+.price-card ul li::before{content:"\2022";color:#d4af37;margin-right:8px}
+.price-card .btn-gold,.price-card .btn-outline{width:100%;text-align:center;margin-top:auto}
+.cfp-section{background:#1a2035;padding:80px 48px;text-align:center}
+.cfp-section .inner{max-width:800px;margin:0 auto;border:1px solid rgba(212,175,55,0.3);padding:48px;background:#0a0e1a}
+.cfp-section p{color:#b0b8c8;font-size:15px;margin:16px 0 32px}
+.form-section{text-align:center}
+.form-section form{max-width:640px;margin:32px auto 0;text-align:left}
+.form-row{margin-bottom:16px}
+.form-row label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#d4af37}
+.form-row input,.form-row select,.form-row textarea{width:100%;padding:12px;background:#1a2035;border:1px solid rgba(212,175,55,0.2);color:#ffffff;font-family:Arial,sans-serif;font-size:14px}
+.form-row textarea{height:100px;resize:vertical}
+.form-row input::placeholder,.form-row textarea::placeholder{color:#6b7280}
+footer{border-top:1px solid rgba(212,175,55,0.15);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;max-width:1200px;margin:0 auto}
+footer .brand{color:#d4af37;font-size:13px;letter-spacing:4px;font-weight:700}
+footer .sub{color:#6b7280;font-size:12px;margin-top:4px}
+footer .links{display:flex;gap:24px;font-size:13px}
+footer .links a{color:#b0b8c8}
+footer .right{text-align:right;font-size:12px;color:#6b7280}
+@media(max-width:768px){
+nav{padding:14px 20px}
+nav div:last-child{gap:16px;font-size:13px}
+.hero h1{font-size:30px}
+.stat-grid,.feature-grid,.pricing-grid{grid-template-columns:1fr}
+section,.problem,.military,.cfp-section{padding:48px 20px}
+footer{flex-direction:column;text-align:center}
+footer .right{text-align:center}
+}
+</style>
+</head>
+<body>
+<nav>
+<div>PHRONTIS FINANCIAL</div>
+<div>
+<a href="#a">Platform</a>
+<a href="#b">For CFPs</a>
+<a href="#c">Pricing</a>
+<a href="/dashboard">Sign In</a>
+</div>
+</nav>
+
+<div class="hero">
+<div class="hero-badge">BUILT BY A SPACE FORCE GUARDIAN</div>
+<h1>The AI Financial Operating System Built for the Military Life Transition</h1>
+<p>Most servicemembers separate without a real financial plan. Phrontis Financial changes that — AI-powered tools built around your pension, TSP, benefits, and next chapter.</p>
+<div class="hero-ctas">
+<a href="/dashboard" class="btn-gold">Access Your Dashboard &rarr;</a>
+<a href="#d" class="btn-outline">Book a CFP Session &rarr;</a>
+</div>
+<div class="hero-trust">Trusted by Space Force Guardians, Army Officers, and transitioning veterans nationwide</div>
+</div>
+
+<div class="problem">
+<div class="inner">
+<div class="section-label">THE CHALLENGE</div>
+<h2>The Transition Gap Is Real</h2>
+<div class="stat-grid">
+<div class="stat-card">
+<div class="number">200,000</div>
+<p>Servicemembers separate annually</p>
+</div>
+<div class="stat-card">
+<div class="number">67%</div>
+<p>Report financial stress within 12 months of separation</p>
+</div>
+<div class="stat-card">
+<div class="number">11</div>
+<p>Financial decisions the average transitioning O-4 must make simultaneously</p>
+</div>
+</div>
+<div class="body-text">TSP elections. Pension timing. SBP decisions. FEHB transition. VA benefits. Home equity. Business formation. Life insurance gaps. Tax strategy. Estate planning. Investment allocation. No one connects all of it. Until now.</div>
+</div>
+</div>
+
+<section id="a">
+<div class="section-label">THE PLATFORM</div>
+<h2>One Platform. Your Entire Financial Picture.</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">SC</div>
+<h3>Separation Command</h3>
+<p>Your countdown clock with every financial milestone mapped to your exact separation date. Never miss a TSP election window or SBP deadline again.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">TO</div>
+<h3>TSP Optimizer</h3>
+<p>Roth vs Traditional modeling based on your separation tax scenario, pension income, and projected civilian earnings. Built for the military pay structure.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">AB</div>
+<h3>AI Financial Brief</h3>
+<p>Weekly AI-generated briefing on your financial readiness score, action items, and upcoming decision windows. Delivered to your phone every Monday.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">CF</div>
+<h3>CFP Integration</h3>
+<p>Every AI insight is reviewed by a credentialed CFP with military financial expertise. Human judgment on top of machine precision.</p>
+</div>
+</div>
+</section>
+
+<div class="military">
+<div class="inner">
+<div class="section-label">MILITARY-NATIVE</div>
+<h2>Built Around How the Military Actually Works</h2>
+<p>BAH, BAS, special pays, TSP matching, Blended Retirement System, SBP elections, VA loan entitlement, SCRA protections, USAA coordination — Phrontis Financial understands the financial architecture of military life because it was built by someone inside it.</p>
+<div class="badge-row">
+<div class="badge">SPACE FORCE GUARDIAN</div>
+<div class="badge">KELLOGG MBA</div>
+<div class="badge">CFP CERTIFIED PARTNER</div>
+</div>
+</div>
+</div>
+
+<section id="c" class="pricing">
+<div class="section-label">PRICING</div>
+<h2>Choose Your Mission Tier</h2>
+<div class="pricing-grid">
+<div class="price-card">
+<h3>BASIC</h3>
+<div class="price">$29<span>/month</span></div>
+<ul>
+<li>Separation countdown dashboard</li>
+<li>TSP break-even calculator</li>
+<li>Monthly AI financial brief</li>
+<li>Pension timing optimizer</li>
+</ul>
+<a href="/subscribe" class="btn-gold">Start Free Trial</a>
+</div>
+<div class="price-card featured">
+<div class="popular-badge">MOST POPULAR</div>
+<h3>OPERATOR</h3>
+<div class="price">$79<span>/month</span></div>
+<ul>
+<li>Everything in Basic</li>
+<li>Weekly AI financial brief</li>
+<li>SBP decision modeling</li>
+<li>VA benefit optimizer</li>
+<li>Priority CFP review queue</li>
+<li>1 CFP consultation per quarter</li>
+</ul>
+<a href="/subscribe" class="btn-gold">Start Free Trial</a>
+</div>
+<div class="price-card">
+<h3>UNIT COMMAND</h3>
+<div class="price">$499<span>/month</span></div>
+<ul>
+<li>Everything in Operator</li>
+<li>Up to 20 servicemember accounts</li>
+<li>Commander dashboard overview</li>
+<li>Monthly unit financial readiness report</li>
+<li>Dedicated CFP point of contact</li>
+<li>Installation pilot eligible</li>
+</ul>
+<a href="#d" class="btn-outline">Contact Us</a>
+</div>
+</div>
+</section>
+
+<div id="b" class="cfp-section">
+<div class="inner">
+<div class="section-label">CFP PARTNERS</div>
+<h2>Are You a CFP Serving Military Clients?</h2>
+<p>Phrontis Financial gives you AI-powered intake, automated separation readiness scoring, and a client management dashboard that triples your capacity without adding headcount. Join as a founding CFP partner.</p>
+<a href="#d" class="btn-gold">Apply as CFP Partner &rarr;</a>
+</div>
+</div>
+
+<section id="d" class="form-section">
+<div class="section-label">GET STARTED</div>
+<h2>Request Early Access</h2>
+<form id="e" name="pf-lead" data-netlify="true" netlify-honeypot="bot-field" action="/success" method="POST">
+<input type="hidden" name="form-name" value="pf-lead">
+<p hidden><input name="bot-field"></p>
+<div class="form-row">
+<label>Full Name</label>
+<input type="text" name="name" id="f" required>
+</div>
+<div class="form-row">
+<label>Email</label>
+<input type="email" name="email" id="g" required>
+</div>
+<div class="form-row">
+<label>Phone</label>
+<input type="tel" name="phone" id="h" required>
+</div>
+<div class="form-row">
+<label>Branch of Service</label>
+<select name="branch" id="i" required>
+<option value="">Select Branch</option>
+<option>Army</option>
+<option>Navy</option>
+<option>Marine Corps</option>
+<option>Air Force</option>
+<option>Space Force</option>
+<option>Coast Guard</option>
+<option>Veteran</option>
+</select>
+</div>
+<div class="form-row">
+<label>Role</label>
+<select name="role" id="j" required>
+<option value="">Select Role</option>
+<option>Active Duty</option>
+<option>Transitioning — within 24 months</option>
+<option>Recently Separated</option>
+<option>CFP Partner Inquiry</option>
+</select>
+</div>
+<div class="form-row">
+<label>Separation Date</label>
+<input type="text" name="separation_date" id="k" placeholder="MM/YYYY">
+</div>
+<div class="form-row">
+<label>Current TSP Balance</label>
+<select name="tsp_balance" id="l">
+<option value="">Select Range</option>
+<option>Under $50K</option>
+<option>$50K-$150K</option>
+<option>$150K-$300K</option>
+<option>$300K-$500K</option>
+<option>$500K+</option>
+</select>
+</div>
+<div class="form-row">
+<label>Biggest Financial Concern</label>
+<textarea name="concern" id="m" placeholder="What keeps you up at night about your financial transition?"></textarea>
+</div>
+<button type="submit" class="btn-gold" style="width:100%;border:none;cursor:pointer;font-size:15px" id="n">Get Early Access &rarr;</button>
+<div id="o" style="display:none;text-align:center;padding:16px;color:#d4af37;font-weight:700;margin-top:16px"></div>
+</form>
+</section>
+
+<footer>
+<div>
+<div class="brand">PHRONTIS FINANCIAL</div>
+<div class="sub">A Phrontis Holdings Company</div>
+</div>
+<div class="links">
+<a href="#a">Platform</a>
+<a href="#b">For CFPs</a>
+<a href="#c">Pricing</a>
+<a href="/dashboard">Dashboard</a>
+</div>
+<div class="right">
+<div>Built by Veterans. For Veterans.</div>
+<div>&copy; 2026 Phrontis Financial LLC</div>
+</div>
+</footer>
+
+<script>
+document.getElementById("e").addEventListener("submit",function(p){
+p.preventDefault();
+var q=new FormData(this);
+fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(q).toString()}).then(function(){
+document.getElementById("o").style.display="block";
+document.getElementById("o").textContent="You are on the list. We will reach out within 24 hours.";
+document.getElementById("e").reset();
+}).catch(function(){
+document.getElementById("o").style.display="block";
+document.getElementById("o").textContent="Something went wrong. Please try again.";
+});
+});
+</script>
+</body>
+</html>

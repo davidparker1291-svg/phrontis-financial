@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrontis Financial — CFP Command Center</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1.6}
+.login-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0e1a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.login-overlay h1{font-size:13px;letter-spacing:4px;color:#d4af37;margin-bottom:32px}
+.login-overlay input{width:300px;padding:14px;background:#1a2035;border:1px solid rgba(212,175,55,0.3);color:#fff;font-family:Arial,sans-serif;font-size:14px;text-align:center}
+.login-overlay .hint{color:#6b7280;font-size:12px;margin-top:12px}
+.login-overlay .error{color:#ef4444;font-size:12px;margin-top:8px;display:none}
+.dashboard{display:none}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;border-bottom:1px solid rgba(212,175,55,0.15);flex-wrap:wrap;gap:12px}
+.top-bar .left{font-size:13px;letter-spacing:3px;color:#d4af37;font-weight:700}
+.top-bar .right{font-size:13px;color:#b0b8c8}
+.partner-badge{background:rgba(212,175,55,0.15);color:#d4af37;padding:8px 24px;font-size:13px;font-weight:700;letter-spacing:1px;text-align:center;margin:16px 32px}
+.row{padding:16px 32px}
+.row-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:12px}
+.card-grid{display:grid;gap:16px}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:#1a2035;padding:24px;border:1px solid rgba(212,175,55,0.1)}
+.card .label{font-size:11px;letter-spacing:2px;color:#6b7280;font-weight:700;margin-bottom:8px}
+.card .value{font-size:28px;font-weight:800;color:#d4af37}
+.card .sub{font-size:12px;color:#b0b8c8;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;border-bottom:2px solid rgba(212,175,55,0.3);color:#d4af37;font-size:11px;letter-spacing:1px;font-weight:700}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.priority-high{color:#ef4444;font-weight:700}
+.priority-medium{color:#f59e0b;font-weight:700}
+.client-row{cursor:pointer}
+.client-row:hover{background:rgba(212,175,55,0.05)}
+.expand-panel{display:none;background:#0a0e1a;border:1px solid rgba(212,175,55,0.2);padding:20px;margin:0 12px 8px}
+.expand-panel.open{display:block}
+.expand-panel h4{color:#d4af37;font-size:13px;letter-spacing:1px;margin-bottom:12px}
+.expand-panel ul{list-style:none;margin-bottom:12px}
+.expand-panel ul li{padding:4px 0;font-size:13px;color:#b0b8c8}
+.expand-panel ul li::before{content:"\2022";color:#d4af37;margin-right:8px}
+.btn-small{background:#d4af37;color:#0a0e1a;padding:8px 20px;border:none;font-size:12px;font-weight:700;cursor:pointer}
+.intake-card{background:#1a2035;border:2px solid rgba(212,175,55,0.3);padding:32px}
+.intake-card .intake-title{font-size:13px;letter-spacing:2px;color:#d4af37;font-weight:700;margin-bottom:16px}
+.intake-card .intake-body{font-size:13px;color:#b0b8c8;line-height:2;white-space:pre-line}
+.capacity-card{background:#1a2035;padding:32px;text-align:center}
+.capacity-row{display:flex;justify-content:center;gap:48px;margin-bottom:24px;flex-wrap:wrap}
+.capacity-item{text-align:center}
+.capacity-item .cap-label{font-size:11px;letter-spacing:2px;color:#6b7280;font-weight:700;margin-bottom:8px}
+.capacity-item .cap-val{font-size:20px;color:#b0b8c8}
+.capacity-item.after .cap-val{color:#d4af37;font-weight:700}
+.capacity-callout{background:rgba(212,175,55,0.15);color:#d4af37;padding:16px;font-size:18px;font-weight:700}
+.gold-border{border:2px solid #d4af37}
+.terms-card{background:#1a2035;border:2px solid #d4af37;padding:32px}
+.terms-card h3{color:#d4af37;font-size:14px;letter-spacing:2px;margin-bottom:16px}
+.terms-card ul{list-style:none}
+.terms-card ul li{padding:6px 0;font-size:14px;color:#b0b8c8;border-bottom:1px solid rgba(255,255,255,0.05)}
+.terms-card ul li strong{color:#ffffff}
+.terms-card .status{color:#f59e0b;font-weight:700;margin-top:16px;font-size:14px}
+@media(max-width:768px){
+.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
+.top-bar{flex-direction:column;text-align:center}
+.row{padding:16px}
+.partner-badge{margin:16px}
+.capacity-row{flex-direction:column;gap:16px}
+}
+</style>
+</head>
+<body>
+<div class="login-overlay" id="a">
+<h1>PHRONTIS FINANCIAL</h1>
+<input type="password" id="b" placeholder="Enter CFP access code" onkeyup="if(this.value==='GarrisonCFP2026!'){document.getElementById('a').style.display='none';document.getElementById('c').style.display='block'}else if(this.value.length>5){document.getElementById('d').style.display='block'}" autofocus>
+<div class="hint">CFP partners only</div>
+<div class="error" id="d">Access denied</div>
+</div>
+
+<div class="dashboard" id="c">
+<div class="top-bar">
+<div class="left">PHRONTIS FINANCIAL &mdash; CFP COMMAND CENTER</div>
+<div class="right">JORDAN [LAST NAME] CFP | PRACTICE DASHBOARD</div>
+</div>
+<div class="partner-badge">FOUNDING CFP PARTNER</div>
+
+<div class="row">
+<div class="row-title">PRACTICE METRICS</div>
+<div class="card-grid grid-4">
+<div class="card"><div class="label">ACTIVE CLIENTS</div><div class="value">3</div><div class="sub">Demo accounts</div></div>
+<div class="card"><div class="label">AVG FINANCIAL READINESS</div><div class="value">68/100</div><div class="sub">Across all clients</div></div>
+<div class="card"><div class="label">ACTION ITEMS THIS WEEK</div><div class="value">7</div><div class="sub">Across all clients</div></div>
+<div class="card"><div class="label">PIPELINE VALUE (AUM)</div><div class="value">$1.24M</div><div class="sub">Total assets under management</div></div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">CLIENT ROSTER</div>
+<div class="card" style="overflow-x:auto">
+<table>
+<tr><th>NAME</th><th>BRANCH</th><th>SEPARATION DATE</th><th>READINESS</th><th>PRIORITY</th><th>ACTION</th></tr>
+<tr class="client-row" onclick="togglePanel('e')"><td>CPT James Riordan</td><td>Army</td><td>March 2027</td><td>58/100</td><td class="priority-high">HIGH</td><td>SBP election needed</td></tr>
+</table>
+<div class="expand-panel" id="e">
+<h4>CPT JAMES RIORDAN - BRIEF</h4>
+<div style="font-size:13px;color:#b0b8c8;margin-bottom:8px">Separation countdown: <strong id="f" style="color:#d4af37"></strong> days</div>
+<ul>
+<li>Complete SBP election analysis - no decision on file</li>
+<li>TSP contribution below max by $8,400 - increase allocation</li>
+<li>File VA disability claim - no claim initiated</li>
+</ul>
+<div style="font-size:12px;color:#6b7280;margin-bottom:12px">AI Brief: Readiness score trending down. SBP window approaching. Immediate CFP intervention recommended.</div>
+<button class="btn-small">Schedule CFP Call</button>
+</div>
+<table>
+<tr class="client-row" onclick="togglePanel('g')"><td>MSG Denise Watkins</td><td>Air Force</td><td>November 2026</td><td>74/100</td><td class="priority-medium">MEDIUM</td><td>TSP rebalance</td></tr>
+</table>
+<div class="expand-panel" id="g">
+<h4>MSG DENISE WATKINS - BRIEF</h4>
+<div style="font-size:13px;color:#b0b8c8;margin-bottom:8px">Separation countdown: <strong id="h" style="color:#d4af37"></strong> days</div>
+<ul>
+<li>TSP allocation review - overweight in L Fund, recommend rebalance</li>
+<li>FEHB transition planning - compare civilian options</li>
+<li>VA claim filed - awaiting C&P exam scheduling</li>
+</ul>
+<div style="font-size:12px;color:#6b7280;margin-bottom:12px">AI Brief: On track. TSP rebalance is primary optimization. Separation timeline is tight - accelerate FEHB research.</div>
+<button class="btn-small">Schedule CFP Call</button>
+</div>
+<table>
+<tr class="client-row" onclick="togglePanel('i')"><td>LTC David Parker</td><td>Space Force</td><td>August 2027</td><td>71/100</td><td class="priority-high">HIGH</td><td>83(b) + SBP pending</td></tr>
+</table>
+<div class="expand-panel" id="i">
+<h4>LTC DAVID PARKER - BRIEF</h4>
+<div style="font-size:13px;color:#b0b8c8;margin-bottom:8px">Separation countdown: <strong id="j" style="color:#d4af37"></strong> days</div>
+<ul>
+<li>83(b) election for Arktyx Inc - CRITICAL - mail to IRS immediately</li>
+<li>SBP election analysis - calculate breakeven with Jordan</li>
+<li>TSP Roth conversion modeling - high priority before separation</li>
+</ul>
+<div style="font-size:12px;color:#6b7280;margin-bottom:12px">AI Brief: Multiple critical items. 83(b) is time-sensitive tax event. SBP and TSP decisions need CFP modeling before Q1 2027.</div>
+<button class="btn-small">Schedule CFP Call</button>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">AI INTAKE SUMMARY - AUTO-GENERATED</div>
+<div class="intake-card">
+<div class="intake-title">NEW CLIENT INTAKE - AUTO-GENERATED</div>
+<div class="intake-body" id="k"></div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">CFP CAPACITY CALCULATOR</div>
+<div class="capacity-card">
+<div class="capacity-row">
+<div class="capacity-item">
+<div class="cap-label">WITHOUT PHRONTIS FINANCIAL</div>
+<div class="cap-val">80 clients max | $192,000 AUM revenue/yr</div>
+</div>
+<div class="capacity-item after">
+<div class="cap-label">WITH PHRONTIS FINANCIAL</div>
+<div class="cap-val">250 clients max | $600,000 AUM revenue/yr</div>
+</div>
+</div>
+<div class="capacity-callout">3x practice capacity. Same license. Same hours.</div>
+</div>
+</div>
+
+<div class="row">
+<div class="row-title">REFERRAL PIPELINE (FROM PLN COMMAND)</div>
+<div class="card" style="overflow-x:auto">
+<table>
+<tr><th>NAME</th><th>COMPANY</th><th>LOCATION</th><th>TYPE</th><th>REFERRED BY</th><th>STATUS</th></tr>
+<tr><td>Shawn Mitchell</td><td>Rise Exteriors</td><td>Frederick County MD</td><td>Business owner</td><td>PLN Command</td><td style="color:#d4af37">Intro scheduled</td></tr>
+<tr><td>[Client 2]</td><td>[Company]</td><td>[Location]</td><td>Business owner</td><td>PLN Command</td><td style="color:#6b7280">Pending</td></tr>
+<tr><td>[Client 3]</td><td>[Company]</td><td>[Location]</td><td>Business owner</td><td>PLN Command</td><td style="color:#6b7280">Pending</td></tr>
+</table>
+<div style="padding:16px 12px;font-size:13px;color:#b0b8c8">These clients were referred through PLN Command - the contractor lead intelligence platform. Every PLN client is a small business owner with unmet financial planning needs.</div>
+</div>
+</div>
+
+<div class="row" style="padding-bottom:48px">
+<div class="row-title">PARTNERSHIP TERMS</div>
+<div class="terms-card">
+<h3>FOUNDING CFP PARTNER AGREEMENT</h3>
+<ul>
+<li><strong>Partner:</strong> Jordan [Last Name], CFP - Founding Partner</li>
+<li><strong>Practice revenue:</strong> 100% retained by Jordan's practice</li>
+<li><strong>Platform equity:</strong> Vesting schedule TBD - co-founder conversation</li>
+<li><strong>PLN Command referral pipeline:</strong> Active (Rise Exteriors - Frederick County MD)</li>
+<li><strong>Territory:</strong> Jordan's practice = exclusive military CFP partner for DC/MD/VA territory</li>
+</ul>
+<div class="status">STATUS: PENDING CO-FOUNDER CONVERSATION</div>
+</div>
+</div>
+</div>
+
+<script>
+function togglePanel(l){var m=document.getElementById(l);if(m.classList.contains("open")){m.classList.remove("open")}else{m.classList.add("open")}}
+var n=new Date();
+var o=Math.ceil((new Date(2027,2,15)-n)/(1000*60*60*24));
+var p=Math.ceil((new Date(2026,10,1)-n)/(1000*60*60*24));
+var q=Math.ceil((new Date(2027,7,1)-n)/(1000*60*60*24));
+document.getElementById("f").textContent=Math.max(0,o);
+document.getElementById("h").textContent=Math.max(0,p);
+document.getElementById("j").textContent=q;
+var today=n.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+document.getElementById("k").textContent="Client: CPT James Riordan | Received: "+today+"\nBranch: Army | Years of Service: 11 | Pay Grade: O-3\nSeparation Date: March 15, 2027 | Days Remaining: "+Math.max(0,o)+"\nTSP Balance: $124,000 | Blended Retirement System: Yes\nFamily Status: Married, 2 dependents | Home: Owned - Fort Campbell KY\nAI Readiness Score: 58/100\n\nCritical Gaps Identified:\n- No SBP election analysis completed\n- TSP contribution below max by $8,400\n- No VA disability claim filed\n- Life insurance gap: $340,000 above SGLI coverage\n\nRecommended First CFP Session Focus:\nSBP breakeven calculation, TSP Roth conversion modeling, VA claim initiation.";
+</script>
+</body>
+</html>

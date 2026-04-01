@@ -1,0 +1,5 @@
+anthropic
+twilio
+python-dotenv
+requests
+schedule
