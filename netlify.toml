@@ -2,8 +2,8 @@
   publish = "."
 
 [[redirects]]
-  from = "/success"
-  to = "/success.html"
+  from = "/"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
@@ -19,6 +19,11 @@
 [[redirects]]
   from = "/subscribe"
   to = "/subscribe.html"
+  status = 200
+
+[[redirects]]
+  from = "/success"
+  to = "/success.html"
   status = 200
 
 [[headers]]
