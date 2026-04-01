@@ -6,63 +6,65 @@
 <title>Phrontis Financial — CFP Command Center</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1.6}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1.5}
 .login-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0e1a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.login-overlay h1{font-size:13px;letter-spacing:4px;color:#d4af37;margin-bottom:32px}
-.login-overlay input{width:300px;padding:14px;background:#1a2035;border:1px solid rgba(212,175,55,0.3);color:#fff;font-family:Arial,sans-serif;font-size:14px;text-align:center}
-.login-overlay .hint{color:#6b7280;font-size:12px;margin-top:12px}
-.login-overlay .error{color:#ef4444;font-size:12px;margin-top:8px;display:none}
+.login-overlay h1{font-size:11px;letter-spacing:4px;color:#d4af37;margin-bottom:32px;font-weight:700}
+.login-overlay input{width:280px;padding:12px 16px;background:#111827;border:1px solid rgba(212,175,55,0.15);color:#fff;font-family:Arial,sans-serif;font-size:13px;text-align:center;border-radius:6px}
+.login-overlay .hint{color:#64748b;font-size:11px;margin-top:12px}
+.login-overlay .error{color:#ef4444;font-size:11px;margin-top:8px;display:none}
 .dashboard{display:none}
-.top-bar{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;border-bottom:1px solid rgba(212,175,55,0.15);flex-wrap:wrap;gap:12px}
-.top-bar .left{font-size:13px;letter-spacing:3px;color:#d4af37;font-weight:700}
-.top-bar .right{font-size:13px;color:#b0b8c8}
-.partner-badge{background:rgba(212,175,55,0.15);color:#d4af37;padding:8px 24px;font-size:13px;font-weight:700;letter-spacing:1px;text-align:center;margin:16px 32px}
-.row{padding:16px 32px}
-.row-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:12px}
-.card-grid{display:grid;gap:16px}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;border-bottom:1px solid rgba(212,175,55,0.1)}
+.top-bar .left{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700}
+.top-bar .right{font-size:12px;color:#94a3b8;display:flex;align-items:center;gap:12px}
+.partner-pill{display:inline-block;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.5px;background:rgba(212,175,55,0.15);color:#d4af37}
+.content{max-width:1200px;margin:0 auto;padding:0 32px}
+.row{padding:40px 0 0}
+.row-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:16px;text-transform:uppercase}
+.card-grid{display:grid;gap:12px}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-2{grid-template-columns:repeat(2,1fr)}
-.card{background:#1a2035;padding:24px;border:1px solid rgba(212,175,55,0.1)}
-.card .label{font-size:11px;letter-spacing:2px;color:#6b7280;font-weight:700;margin-bottom:8px}
-.card .value{font-size:28px;font-weight:800;color:#d4af37}
-.card .sub{font-size:12px;color:#b0b8c8;margin-top:4px}
+.card{background:#111827;padding:24px;border:1px solid rgba(212,175,55,0.15);border-radius:8px}
+.card .label{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:8px;text-transform:uppercase}
+.card .value{font-size:28px;font-weight:800;color:#ffffff}
+.card .sub{font-size:12px;color:#64748b;margin-top:4px}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;padding:10px 12px;border-bottom:2px solid rgba(212,175,55,0.3);color:#d4af37;font-size:11px;letter-spacing:1px;font-weight:700}
-td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
-.priority-high{color:#ef4444;font-weight:700}
-.priority-medium{color:#f59e0b;font-weight:700}
+th{text-align:left;padding:8px 12px;border-bottom:1px solid rgba(212,175,55,0.15);color:#d4af37;font-size:11px;letter-spacing:2px;font-weight:700;text-transform:uppercase}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#94a3b8}
+.pill{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:0.5px}
+.pill-high{background:rgba(239,68,68,0.15);color:#ef4444}
+.pill-medium{background:rgba(245,158,11,0.15);color:#f59e0b}
+.pill-low{background:rgba(34,197,94,0.15);color:#22c55e}
 .client-row{cursor:pointer}
-.client-row:hover{background:rgba(212,175,55,0.05)}
-.expand-panel{display:none;background:#0a0e1a;border:1px solid rgba(212,175,55,0.2);padding:20px;margin:0 12px 8px}
+.client-row:hover{background:rgba(212,175,55,0.04)}
+.expand-panel{display:none;background:#0d1117;border:1px solid rgba(212,175,55,0.1);padding:20px;margin:0 0 4px;border-radius:0 0 8px 8px}
 .expand-panel.open{display:block}
-.expand-panel h4{color:#d4af37;font-size:13px;letter-spacing:1px;margin-bottom:12px}
+.expand-panel h4{color:#d4af37;font-size:11px;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase}
 .expand-panel ul{list-style:none;margin-bottom:12px}
-.expand-panel ul li{padding:4px 0;font-size:13px;color:#b0b8c8}
+.expand-panel ul li{padding:3px 0;font-size:13px;color:#94a3b8}
 .expand-panel ul li::before{content:"\2022";color:#d4af37;margin-right:8px}
-.btn-small{background:#d4af37;color:#0a0e1a;padding:8px 20px;border:none;font-size:12px;font-weight:700;cursor:pointer}
-.intake-card{background:#1a2035;border:2px solid rgba(212,175,55,0.3);padding:32px}
-.intake-card .intake-title{font-size:13px;letter-spacing:2px;color:#d4af37;font-weight:700;margin-bottom:16px}
-.intake-card .intake-body{font-size:13px;color:#b0b8c8;line-height:2;white-space:pre-line}
-.capacity-card{background:#1a2035;padding:32px;text-align:center}
-.capacity-row{display:flex;justify-content:center;gap:48px;margin-bottom:24px;flex-wrap:wrap}
+.btn-small{background:#d4af37;color:#0a0e1a;padding:6px 16px;border:none;font-size:11px;font-weight:700;cursor:pointer;border-radius:4px;letter-spacing:0.5px}
+.intake-card{background:#111827;border:1px solid rgba(212,175,55,0.15);padding:24px;border-radius:8px}
+.intake-card .intake-title{font-size:11px;letter-spacing:3px;color:#d4af37;font-weight:700;margin-bottom:16px;text-transform:uppercase}
+.intake-card .intake-body{font-size:13px;color:#94a3b8;line-height:1.9;white-space:pre-line}
+.capacity-card{background:#111827;padding:24px;text-align:center;border:1px solid rgba(212,175,55,0.15);border-radius:8px}
+.capacity-row{display:flex;justify-content:center;gap:48px;margin-bottom:20px;flex-wrap:wrap}
 .capacity-item{text-align:center}
-.capacity-item .cap-label{font-size:11px;letter-spacing:2px;color:#6b7280;font-weight:700;margin-bottom:8px}
-.capacity-item .cap-val{font-size:20px;color:#b0b8c8}
+.capacity-item .cap-label{font-size:11px;letter-spacing:3px;color:#64748b;font-weight:700;margin-bottom:8px;text-transform:uppercase}
+.capacity-item .cap-val{font-size:18px;color:#94a3b8}
 .capacity-item.after .cap-val{color:#d4af37;font-weight:700}
-.capacity-callout{background:rgba(212,175,55,0.15);color:#d4af37;padding:16px;font-size:18px;font-weight:700}
-.gold-border{border:2px solid #d4af37}
-.terms-card{background:#1a2035;border:2px solid #d4af37;padding:32px}
-.terms-card h3{color:#d4af37;font-size:14px;letter-spacing:2px;margin-bottom:16px}
+.capacity-callout{background:rgba(212,175,55,0.08);color:#d4af37;padding:14px;font-size:16px;font-weight:700;border-radius:6px}
+.terms-card{background:#111827;border:1px solid rgba(212,175,55,0.2);padding:24px;border-radius:8px}
+.terms-card h3{color:#d4af37;font-size:11px;letter-spacing:3px;margin-bottom:16px;text-transform:uppercase}
 .terms-card ul{list-style:none}
-.terms-card ul li{padding:6px 0;font-size:14px;color:#b0b8c8;border-bottom:1px solid rgba(255,255,255,0.05)}
+.terms-card ul li{padding:6px 0;font-size:13px;color:#94a3b8;border-bottom:1px solid rgba(255,255,255,0.04)}
 .terms-card ul li strong{color:#ffffff}
-.terms-card .status{color:#f59e0b;font-weight:700;margin-top:16px;font-size:14px}
+.terms-card .status{display:inline-block;padding:4px 12px;border-radius:100px;background:rgba(245,158,11,0.15);color:#f59e0b;font-weight:700;margin-top:16px;font-size:11px;letter-spacing:0.5px}
+.row:last-child{padding-bottom:48px}
 @media(max-width:768px){
 .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
-.top-bar{flex-direction:column;text-align:center}
-.row{padding:16px}
-.partner-badge{margin:16px}
+.top-bar{flex-direction:column;gap:6px;text-align:center}
+.content{padding:0 16px}
 .capacity-row{flex-direction:column;gap:16px}
 }
 </style>
@@ -77,10 +79,10 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 
 <div class="dashboard" id="c">
 <div class="top-bar">
-<div class="left">PHRONTIS FINANCIAL &mdash; CFP COMMAND CENTER</div>
-<div class="right">JORDAN [LAST NAME] CFP | PRACTICE DASHBOARD</div>
+<div class="left">PHRONTIS FINANCIAL</div>
+<div class="right">JORDAN [LAST NAME] CFP <span class="partner-pill">FOUNDING PARTNER</span></div>
 </div>
-<div class="partner-badge">FOUNDING CFP PARTNER</div>
+<div class="content">
 
 <div class="row">
 <div class="row-title">PRACTICE METRICS</div>
@@ -97,7 +99,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <div class="card" style="overflow-x:auto">
 <table>
 <tr><th>NAME</th><th>BRANCH</th><th>SEPARATION DATE</th><th>READINESS</th><th>PRIORITY</th><th>ACTION</th></tr>
-<tr class="client-row" onclick="togglePanel('e')"><td>CPT James Riordan</td><td>Army</td><td>March 2027</td><td>58/100</td><td class="priority-high">HIGH</td><td>SBP election needed</td></tr>
+<tr class="client-row" onclick="togglePanel('e')"><td>CPT James Riordan</td><td>Army</td><td>March 2027</td><td>58/100</td><td><span class="pill pill-high">HIGH</span></td><td>SBP election needed</td></tr>
 </table>
 <div class="expand-panel" id="e">
 <h4>CPT JAMES RIORDAN - BRIEF</h4>
@@ -111,7 +113,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <button class="btn-small">Schedule CFP Call</button>
 </div>
 <table>
-<tr class="client-row" onclick="togglePanel('g')"><td>MSG Denise Watkins</td><td>Air Force</td><td>November 2026</td><td>74/100</td><td class="priority-medium">MEDIUM</td><td>TSP rebalance</td></tr>
+<tr class="client-row" onclick="togglePanel('g')"><td>MSG Denise Watkins</td><td>Air Force</td><td>November 2026</td><td>74/100</td><td><span class="pill pill-medium">MEDIUM</span></td><td>TSP rebalance</td></tr>
 </table>
 <div class="expand-panel" id="g">
 <h4>MSG DENISE WATKINS - BRIEF</h4>
@@ -125,7 +127,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <button class="btn-small">Schedule CFP Call</button>
 </div>
 <table>
-<tr class="client-row" onclick="togglePanel('i')"><td>MAJ Marcus Webb</td><td>Army</td><td>August 2027</td><td>64/100</td><td class="priority-high">HIGH</td><td>VA claim + SBP pending</td></tr>
+<tr class="client-row" onclick="togglePanel('i')"><td>MAJ Marcus Webb</td><td>Army</td><td>August 2027</td><td>64/100</td><td><span class="pill pill-high">HIGH</span></td><td>VA claim + SBP pending</td></tr>
 </table>
 <div class="expand-panel" id="i">
 <h4>MAJ MARCUS WEBB - BRIEF</h4>
@@ -171,15 +173,15 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <div class="card" style="overflow-x:auto">
 <table>
 <tr><th>NAME</th><th>COMPANY</th><th>LOCATION</th><th>TYPE</th><th>REFERRED BY</th><th>STATUS</th></tr>
-<tr><td>Shawn Mitchell</td><td>Rise Exteriors</td><td>Frederick County MD</td><td>Business owner</td><td>PLN Command</td><td style="color:#d4af37">Intro scheduled</td></tr>
-<tr><td>[Client 2]</td><td>[Company]</td><td>[Location]</td><td>Business owner</td><td>PLN Command</td><td style="color:#6b7280">Pending</td></tr>
-<tr><td>[Client 3]</td><td>[Company]</td><td>[Location]</td><td>Business owner</td><td>PLN Command</td><td style="color:#6b7280">Pending</td></tr>
+<tr><td>Shawn Mitchell</td><td>Rise Exteriors</td><td>Frederick County MD</td><td>Business owner</td><td>PLN Command</td><td><span class="pill pill-medium">Scheduled</span></td></tr>
+<tr><td>[Client 2]</td><td>[Company]</td><td>[Location]</td><td>Business owner</td><td>PLN Command</td><td><span class="pill" style="background:rgba(100,116,139,0.15);color:#64748b">Pending</span></td></tr>
+<tr><td>[Client 3]</td><td>[Company]</td><td>[Location]</td><td>Business owner</td><td>PLN Command</td><td><span class="pill" style="background:rgba(100,116,139,0.15);color:#64748b">Pending</span></td></tr>
 </table>
 <div style="padding:16px 12px;font-size:13px;color:#b0b8c8">These clients were referred through PLN Command - the contractor lead intelligence platform. Every PLN client is a small business owner with unmet financial planning needs.</div>
 </div>
 </div>
 
-<div class="row" style="padding-bottom:48px">
+<div class="row">
 <div class="row-title">PARTNERSHIP TERMS</div>
 <div class="terms-card">
 <h3>FOUNDING CFP PARTNER AGREEMENT</h3>
@@ -191,6 +193,7 @@ td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
 <li><strong>Territory:</strong> Jordan's practice = exclusive military CFP partner for DC/MD/VA territory</li>
 </ul>
 <div class="status">STATUS: PENDING CO-FOUNDER CONVERSATION</div>
+</div>
 </div>
 </div>
 </div>
