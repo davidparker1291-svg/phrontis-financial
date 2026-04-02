@@ -1,67 +1,66 @@
 # Phrontis Financial
 
-The AI-powered financial operating system built for servicemembers transitioning to civilian life. Phrontis Financial connects TSP optimization, pension timing, SBP elections, VA benefits, and separation planning into a single intelligent platform — backed by AI analysis and reviewed by a credentialed CFP with military financial expertise.
+The AI Financial Operating System built for the military life transition.
 
-Co-founded by David Parker (U.S. Space Force Guardian, 12+ years active duty, MBA Northwestern Kellogg, separating August 2027) and Jordan (CFP, Army veteran). Built for the 200,000 servicemembers who separate each year without a connected financial plan.
+**Built by a Space Force Guardian. Powered by AI. Reviewed by a CFP.**
+
+## Overview
+
+200,000 servicemembers separate every year. Most leave money on the table. Phrontis Financial changes that by connecting TSP optimization, VA disability claims, pension timing, SBP elections, and separation planning into a single intelligent platform.
+
+## Product Modules
+
+| Module | Tier | Description |
+|--------|------|-------------|
+| Separation Command | All Tiers | Countdown with every financial milestone mapped |
+| TSP Optimizer | All Tiers | Roth vs Traditional modeling for military pay |
+| VA Disability Optimizer | Operator+ | AI-guided claim prep and benefit estimation |
+| PCS Financial Command | Operator+ | BAH comparison, VA loan, buy vs rent analysis |
+| Military Spouse Track | Operator+ | Financial independence planning for spouses |
+| Separation War Room | Unit Command | 90-day intensive cohort with direct CFP access |
+| Trading Command | Self-Directed | Investing education beyond TSP |
 
 ## Stack
 
-- **Frontend:** Static HTML/CSS, dark navy design system, Arial typography
+- **Frontend:** Static HTML/CSS/JS — GitHub Pages
+- **Styling:** Arial only, dark navy (#0a0e1a) + gold (#d4af37)
+- **Data Layer:** Google Sheets via n8n webhooks
 - **AI Agents:** Python + Anthropic Claude API
-- **Hosting:** Netlify (static site + forms)
-- **Charts:** Chart.js via cdnjs.cloudflare.com
-- **Payments:** Stripe (coming soon)
-- **Notifications:** Twilio SMS (coming soon)
+- **SMS:** Twilio for weekly brief delivery
+- **CFP Partner:** Jordan, CFP, Army veteran
 
-## File Map
+## File Structure
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Public landing page — hero, pricing, lead form |
-| `dashboard.html` | DP's personal separation dashboard (password: `PFCommand2026!`) |
-| `jordan.html` | CFP practice demo for Jordan (password: `GarrisonCFP2026!`) |
-| `subscribe.html` | Subscription tier page with waitlist form |
-| `success.html` | Form submission confirmation |
-| `agents/separation_brief.py` | AI separation readiness brief generator |
-| `agents/tsp_optimizer.py` | TSP Roth vs Traditional calculator |
-| `agents/requirements.txt` | Python dependencies |
-| `agents/.env` | API keys (gitignored) |
-| `netlify.toml` | Netlify build config + redirects + headers |
-| `_redirects` | Netlify redirect rules |
-
-## Running the AI Agents
-
-```bash
-cd agents
-pip install -r requirements.txt
-
-# Update .env with your Anthropic API key
-# ANTHROPIC_API_KEY=sk-ant-...
-
-python separation_brief.py   # Generates weekly AI brief
-python tsp_optimizer.py       # Runs TSP Roth vs Traditional analysis
+```
+index.html          Landing page
+intake.html         10-question onboarding flow
+dashboard.html      Personalized financial dashboard
+va-optimizer.html   VA Disability Optimizer (standalone)
+pcs-command.html    PCS Financial Command tool
+jordan.html         CFP practice dashboard (password protected)
+subscribe.html      Pricing tiers + waitlist
+success.html        Form success confirmation
+404.html            Custom 404 page
+CNAME               Custom domain config
+agents/
+  separation_brief.py   AI brief generator
+  va_optimizer.py       VA rating calculator
+  pcs_analyzer.py       BAH comparison engine
+  requirements.txt      Python dependencies
+  .env                  API keys (gitignored)
 ```
 
-## Netlify Deployment
+## Deployment
 
-1. Connect GitHub repo to Netlify
-2. Build command: (none — static site)
-3. Publish directory: `.`
-4. Forms are auto-detected via `data-netlify="true"`
+GitHub Pages via GitHub Actions. Push to `main` triggers automatic deploy.
 
-## GitHub Repository
+## Company
 
-`davidparker1291-svg/phrontis-financial`
+**Phrontis Financial** — A Phrontis Holdings Company
 
-## Dashboard Passwords
+Founded by David Parker, Space Force Guardian, Kellogg MBA.
+CFP Partner: Jordan, CFP, Army veteran.
 
-- **Separation Command (DP):** `PFCommand2026!`
-- **CFP Command Center (Jordan):** `GarrisonCFP2026!`
+---
 
-## Next Build Priorities
-
-1. RevenueCat/Stripe live payment integration
-2. Twilio weekly brief SMS delivery
-3. Jordan co-founder onboarding and equity structure
-4. Mobile-responsive refinements
-5. Client self-service onboarding flow
+2026 Phrontis Financial LLC | Not financial advice. CFP services provided by independent practitioner.

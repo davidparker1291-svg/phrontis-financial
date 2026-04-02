@@ -3,142 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phrontis Financial — Subscribe</title>
+<title>Subscribe — Phrontis Financial</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#0a0e1a;color:#ffffff;line-height:1.6;min-height:100vh}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;border-bottom:1px solid rgba(212,175,55,0.15)}
-nav a{color:#d4af37;text-decoration:none;font-size:13px;letter-spacing:4px;font-weight:700}
-.container{max-width:1200px;margin:0 auto;padding:60px 24px}
-h1{text-align:center;font-size:36px;font-weight:800;margin-bottom:8px}
-.sub{text-align:center;color:#b0b8c8;font-size:16px;margin-bottom:48px}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.price-card{background:#1a2035;padding:40px 28px;border:1px solid rgba(212,175,55,0.1);display:flex;flex-direction:column}
-.price-card.featured{border:2px solid #d4af37;position:relative}
-.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#d4af37;color:#0a0e1a;font-size:11px;font-weight:700;padding:4px 16px;letter-spacing:1px}
-.price-card h2{font-size:22px;font-weight:700;margin-bottom:4px}
-.price{font-size:36px;font-weight:800;color:#d4af37;margin-bottom:4px}
-.price span{font-size:14px;font-weight:400;color:#b0b8c8}
-.price-card ul{list-style:none;margin:24px 0;flex:1}
-.price-card ul li{padding:6px 0;font-size:14px;color:#b0b8c8}
-.price-card ul li::before{content:"\2022";color:#d4af37;margin-right:8px}
-.btn-gold{background:#d4af37;color:#0a0e1a;padding:14px 32px;font-size:15px;font-weight:700;border:none;cursor:pointer;text-align:center;display:block;width:100%}
-.btn-outline{border:2px solid #d4af37;color:#d4af37;padding:12px 32px;font-size:15px;font-weight:700;background:transparent;cursor:pointer;text-align:center;display:block;width:100%}
-.waitlist{max-width:640px;margin:64px auto 0;text-align:center}
-.waitlist h2{font-size:28px;font-weight:800;margin-bottom:8px}
-.waitlist p{color:#b0b8c8;margin-bottom:24px;font-size:14px}
-.form-row{margin-bottom:16px;text-align:left}
-.form-row label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#d4af37}
-.form-row input,.form-row select{width:100%;padding:12px;background:#1a2035;border:1px solid rgba(212,175,55,0.2);color:#ffffff;font-family:Arial,sans-serif;font-size:14px}
-.form-row input::placeholder{color:#6b7280}
-.msg{display:none;text-align:center;padding:16px;color:#d4af37;font-weight:700;margin-top:16px}
-@media(max-width:768px){
-.pricing-grid{grid-template-columns:1fr}
-nav{padding:14px 20px}
-}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;font-size:13px;line-height:1.6}
+.a{max-width:1200px;margin:0 auto;padding:0 24px}
+.b{text-transform:uppercase;font-size:11px;letter-spacing:3px;color:#d4af37}
+header{background:rgba(10,14,26,0.95);border-bottom:1px solid rgba(212,175,55,0.15);padding:16px 0}
+header .a{display:flex;align-items:center;justify-content:space-between}
+.c{font-size:14px;font-weight:700;letter-spacing:2px;color:#d4af37;text-transform:uppercase;text-decoration:none}
+nav a{color:#94a3b8;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-left:24px;text-decoration:none}
+nav a:hover{color:#d4af37}
+.d{text-align:center;padding:80px 0 48px}
+.d h1{font-size:36px;margin-bottom:12px}
+.d p{color:#94a3b8;font-size:15px}
+.e{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:60px}
+.f{background:#111827;border-radius:12px;padding:32px 24px;border:1px solid rgba(212,175,55,0.1);display:flex;flex-direction:column}
+.f.g{border:2px solid #d4af37;position:relative}
+.g::after{content:'MOST POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#d4af37;color:#0a0e1a;font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 14px;border-radius:10px}
+.f h3{font-size:20px;margin-bottom:4px}
+.h{font-size:32px;font-weight:700;color:#d4af37;margin-bottom:16px}
+.h span{font-size:14px;color:#94a3b8;font-weight:400}
+.f ul{list-style:none;flex:1;margin-bottom:20px}
+.f ul li{color:#94a3b8;font-size:12px;padding:6px 0;border-bottom:1px solid rgba(148,163,184,0.08)}
+.f ul li::before{content:'\2713';color:#d4af37;margin-right:8px}
+.i{display:block;width:100%;padding:14px;text-align:center;background:#d4af37;color:#0a0e1a;font-weight:700;border-radius:6px;border:none;cursor:pointer;font-family:Arial,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:1px;transition:opacity 0.3s}
+.i:hover{opacity:0.85}
+.j{background:#111827;border-radius:12px;padding:40px;border:1px solid rgba(212,175,55,0.1);max-width:500px;margin:0 auto 60px;text-align:center}
+.j h3{font-size:20px;margin-bottom:8px}
+.j p{color:#94a3b8;margin-bottom:20px}
+.j input{width:100%;padding:12px 16px;background:#0a0e1a;border:1px solid rgba(212,175,55,0.2);border-radius:6px;color:#fff;font-family:Arial,sans-serif;font-size:14px;margin-bottom:12px}
+.j input:focus{outline:none;border-color:#d4af37}
+.k{display:none;color:#d4af37;font-weight:700;padding:12px;font-size:14px}
+footer{border-top:1px solid rgba(212,175,55,0.1);padding:24px 0;text-align:center;color:#94a3b8;font-size:11px}
+@media(max-width:900px){.e{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<header>
+<div class="a">
+<a href="/" class="c">Phrontis Financial</a>
 <nav>
-<a href="/">PHRONTIS FINANCIAL</a>
-<a href="/" style="font-size:14px;letter-spacing:0;font-weight:500;color:#b0b8c8">&larr; Back</a>
+<a href="/intake.html">Start Brief</a>
+<a href="/#modules">Modules</a>
+<a href="/va-optimizer.html">VA Optimizer</a>
 </nav>
-
-<div class="container">
-<h1>Choose Your Mission Tier</h1>
-<div class="sub">All plans include a 14-day free trial. Cancel anytime.</div>
-
-<div class="pricing-grid">
-<div class="price-card">
-<h2>BASIC</h2>
-<div class="price">$29<span>/month</span></div>
-<ul>
-<li>Separation countdown dashboard</li>
-<li>TSP break-even calculator</li>
-<li>Monthly AI financial brief</li>
-<li>Pension timing optimizer</li>
-</ul>
-<button class="btn-gold" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Coming Soon &mdash; Join Waitlist</button>
 </div>
-<div class="price-card featured">
-<div class="popular-badge">MOST POPULAR</div>
-<h2>OPERATOR</h2>
-<div class="price">$79<span>/month</span></div>
+</header>
+
+<div class="a">
+<div class="d">
+<span class="b">Choose Your Plan</span>
+<h1>Invest in Your Transition</h1>
+<p>Every plan includes AI-powered financial intelligence built for the military life transition.</p>
+</div>
+
+<div class="e">
+<div class="f">
+<h3>Basic</h3>
+<div class="h">$49<span>/month</span></div>
+<ul>
+<li>Separation dashboard</li>
+<li>TSP calculator</li>
+<li>Monthly SMS brief</li>
+<li>Pension optimizer</li>
+</ul>
+<button class="i" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+</div>
+<div class="f g">
+<h3>Operator</h3>
+<div class="h">$149<span>/month</span></div>
 <ul>
 <li>Everything in Basic</li>
-<li>Weekly AI financial brief</li>
-<li>SBP decision modeling</li>
-<li>VA benefit optimizer</li>
-<li>Priority CFP review queue</li>
-<li>1 CFP consultation per quarter</li>
+<li>Weekly SMS briefs</li>
+<li>VA Disability Optimizer</li>
+<li>PCS Financial Command</li>
+<li>Military Spouse Track</li>
+<li>SBP modeling</li>
+<li>1 CFP call per quarter</li>
 </ul>
-<button class="btn-gold" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Coming Soon &mdash; Join Waitlist</button>
+<button class="i" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
 </div>
-<div class="price-card">
-<h2>UNIT COMMAND</h2>
-<div class="price">$499<span>/month</span></div>
+<div class="f">
+<h3>Unit Command</h3>
+<div class="h">$1,999<span>/month</span></div>
 <ul>
-<li>Everything in Operator</li>
-<li>Up to 20 servicemember accounts</li>
-<li>Commander dashboard overview</li>
-<li>Monthly unit financial readiness report</li>
-<li>Dedicated CFP point of contact</li>
-<li>Installation pilot eligible</li>
+<li>Up to 20 accounts</li>
+<li>Commander dashboard</li>
+<li>War Room cohort access</li>
+<li>Dedicated CFP partner</li>
 </ul>
-<button class="btn-outline" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+<button class="i" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+</div>
+<div class="f">
+<h3>Enterprise</h3>
+<div class="h">Custom</div>
+<ul>
+<li>TAP program integration</li>
+<li>White-labeled platform</li>
+<li>Federal contract ready</li>
+<li>Custom reporting</li>
+</ul>
+<button class="i" onclick="document.getElementById('a').scrollIntoView({behavior:'smooth'})">Contact Us</button>
 </div>
 </div>
 
-<div class="waitlist" id="a">
-<h2>Join the Waitlist</h2>
-<p>Stripe payments launching soon. Reserve your spot.</p>
-<form id="b" name="pf-waitlist" data-netlify="true" netlify-honeypot="bot-field" method="POST">
-<input type="hidden" name="form-name" value="pf-waitlist">
-<p hidden><input name="bot-field"></p>
-<div class="form-row"><label>Full Name</label><input type="text" name="name" id="c" required></div>
-<div class="form-row"><label>Email</label><input type="email" name="email" id="d" required></div>
-<div class="form-row">
-<label>Tier Selection</label>
-<select name="tier" id="e" required>
-<option value="">Select Tier</option>
-<option>Basic ($29/mo)</option>
-<option>Operator ($79/mo)</option>
-<option>Unit Command ($499/mo)</option>
-</select>
-</div>
-<div class="form-row">
-<label>Branch of Service</label>
-<select name="branch" id="f" required>
-<option value="">Select Branch</option>
-<option>Army</option>
-<option>Navy</option>
-<option>Marine Corps</option>
-<option>Air Force</option>
-<option>Space Force</option>
-<option>Coast Guard</option>
-<option>Veteran</option>
-</select>
-</div>
-<div class="form-row"><label>Separation Date</label><input type="text" name="separation_date" id="g" placeholder="MM/YYYY"></div>
-<button type="submit" class="btn-gold" style="border:none;cursor:pointer;font-size:15px" id="h">Join Waitlist &rarr;</button>
-<div class="msg" id="i"></div>
+<div class="j" id="a">
+<span class="b">Early Access</span>
+<h3>Join the Waitlist</h3>
+<p>Be the first to access Phrontis Financial when we launch.</p>
+<form id="b" onsubmit="return l()">
+<input type="text" id="c" placeholder="Your name" required>
+<input type="email" id="d" placeholder="Your email" required>
+<input type="tel" id="e" placeholder="Your phone (optional)">
+<button type="submit" class="i">Join Waitlist</button>
 </form>
+<div class="k" id="f"></div>
 </div>
 </div>
+
+<footer>
+<div class="a">2026 Phrontis Financial LLC | Not financial advice. CFP services provided by independent practitioner.</div>
+</footer>
 
 <script>
-document.getElementById("b").addEventListener("submit",function(j){
-j.preventDefault();
-var k=new FormData(this);
-fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(k).toString()}).then(function(){
-document.getElementById("i").style.display="block";
-document.getElementById("i").textContent="You are on the waitlist. We will notify you when payments go live.";
-document.getElementById("b").reset();
-}).catch(function(){
-document.getElementById("i").style.display="block";
-document.getElementById("i").textContent="Something went wrong. Please try again.";
+function l(){
+var data={name:document.getElementById('c').value,email:document.getElementById('d').value,phone:document.getElementById('e').value,source:'waitlist',timestamp:new Date().toISOString()};
+var btn=document.querySelector('#b button');btn.textContent='Submitting...';btn.disabled=true;
+fetch('https://n8n.phrontisleadnetworks.com/webhook/pf-waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(function(){}).catch(function(){}).finally(function(){
+document.getElementById('b').style.display='none';
+document.getElementById('f').style.display='block';
+document.getElementById('f').textContent='You are on the list! We will be in touch soon.';
 });
-});
+return false;
+}
 </script>
 </body>
 </html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCS Financial Command — Phrontis Financial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;font-size:13px;line-height:1.6}
+.a{max-width:900px;margin:0 auto;padding:0 24px}
+.b{text-transform:uppercase;font-size:11px;letter-spacing:3px;color:#d4af37}
+header{background:rgba(10,14,26,0.95);border-bottom:1px solid rgba(212,175,55,0.15);padding:16px 0}
+header .a{display:flex;align-items:center;justify-content:space-between;max-width:1200px}
+.c{font-size:14px;font-weight:700;letter-spacing:2px;color:#d4af37;text-transform:uppercase;text-decoration:none}
+nav a{color:#94a3b8;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-left:24px;text-decoration:none}
+nav a:hover{color:#d4af37}
+.d{text-align:center;padding:60px 0 40px}
+.d h1{font-size:32px;margin-bottom:12px}
+.d p{color:#94a3b8;font-size:15px;max-width:600px;margin:0 auto}
+.e{background:#111827;border-radius:12px;padding:32px;border:1px solid rgba(212,175,55,0.1);margin-bottom:32px}
+.e h2{font-size:20px;margin-bottom:20px}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f label{display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;margin-bottom:6px}
+.f input,.f select{width:100%;padding:12px 16px;background:#0a0e1a;border:1px solid rgba(212,175,55,0.2);border-radius:6px;color:#fff;font-family:Arial,sans-serif;font-size:14px}
+.f input:focus,.f select:focus{outline:none;border-color:#d4af37}
+.g{grid-column:1/-1;text-align:center;margin-top:12px}
+.h{padding:14px 48px;background:#d4af37;color:#0a0e1a;font-weight:700;border-radius:6px;border:none;cursor:pointer;font-family:Arial,sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:1px;transition:opacity 0.3s}
+.h:hover{opacity:0.85}
+#a{display:none}
+.i{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px}
+.j{background:#111827;border-radius:10px;padding:24px;text-align:center;border:1px solid rgba(212,175,55,0.1)}
+.j .b{margin-bottom:8px;display:block}
+.j .k{font-size:32px;font-weight:700;color:#d4af37}
+.j p{color:#94a3b8;font-size:12px;margin-top:4px}
+.l{background:#111827;border-radius:10px;padding:28px;border:1px solid rgba(212,175,55,0.1);margin-bottom:24px}
+.l h3{font-size:16px;margin-bottom:16px}
+.m{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.08);font-size:13px}
+.m span:first-child{color:#94a3b8}
+.m span:last-child{font-weight:700}
+.n{margin-bottom:24px}
+.n h3{font-size:16px;margin-bottom:16px}
+.n ol{margin-left:20px}
+.n ol li{color:#94a3b8;padding:8px 0;font-size:13px;border-bottom:1px solid rgba(212,175,55,0.05)}
+.o{background:#111827;border-radius:12px;padding:28px;border:2px solid #d4af37;text-align:center;margin-bottom:28px}
+.o h3{font-size:18px;margin-bottom:8px}
+.o p{color:#94a3b8;font-size:13px;margin-bottom:16px}
+.p{display:inline-block;padding:14px 36px;background:#d4af37;color:#0a0e1a;font-weight:700;border-radius:6px;text-decoration:none;font-size:14px;text-transform:uppercase;letter-spacing:1px;transition:opacity 0.3s}
+.p:hover{opacity:0.85;text-decoration:none}
+footer{border-top:1px solid rgba(212,175,55,0.1);padding:24px 0;text-align:center;color:#94a3b8;font-size:11px;margin-top:40px}
+@media(max-width:700px){.f,.i{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="a" style="max-width:1200px">
+<a href="/" class="c">Phrontis Financial</a>
+<nav>
+<a href="/intake.html">Start Brief</a>
+<a href="/va-optimizer.html">VA Optimizer</a>
+<a href="/subscribe.html">Pricing</a>
+</nav>
+</div>
+</header>
+
+<div class="a">
+<div class="d">
+<span class="b">PCS Financial Command</span>
+<h1>PCS Financial Command</h1>
+<p>BAH comparison, VA loan analysis, and your complete PCS financial checklist — all in one brief.</p>
+</div>
+
+<div class="e">
+<h2>Enter Your PCS Details</h2>
+<div class="f">
+<div><label>Current Duty Station</label><input type="text" id="b" placeholder="Fort Liberty, NC"></div>
+<div><label>Gaining Duty Station</label><input type="text" id="c" placeholder="Joint Base Lewis-McChord, WA"></div>
+<div><label>Report Date</label><input type="month" id="d"></div>
+<div><label>Pay Grade</label><select id="e"><option value="">Select</option><option>E-5</option><option>E-6</option><option>E-7</option><option>E-8</option><option>E-9</option><option>O-3</option><option>O-4</option><option>O-5</option><option>O-6</option></select></div>
+<div><label>Dependents</label><select id="f"><option value="With">With Dependents</option><option value="Without">Without Dependents</option></select></div>
+<div><label>Current Housing</label><select id="g" onchange="document.getElementById('h').style.display=this.value==='Own'?'block':'none'"><option value="">Select</option><option value="On-post">On-post housing</option><option value="Rent">Off-post renting</option><option value="Own">Own home</option></select></div>
+<div id="h" style="display:none"><label>Estimated Home Equity</label><input type="text" id="i" placeholder="$50,000"></div>
+<div><label>VA Loan Status</label><select id="j"><option value="">Select</option><option>Never used</option><option>Currently using</option><option>Full entitlement available</option></select></div>
+<div class="g"><button class="h" onclick="k()">Generate PCS Financial Brief</button></div>
+</div>
+</div>
+
+<div id="a"></div>
+</div>
+
+<footer>
+<div class="a" style="max-width:1200px">2026 Phrontis Financial LLC | Not financial advice. For informational purposes only.</div>
+</footer>
+
+<script>
+var bah={
+'Fort Liberty':{'E-5':1350,'E-6':1452,'E-7':1542,'O-3':1677,'O-4':1821,'O-5':1956,'O-6':2100},
+'Fort Bragg':{'E-5':1350,'E-6':1452,'E-7':1542,'O-3':1677,'O-4':1821,'O-5':1956,'O-6':2100},
+'Fort Hood':{'E-5':1287,'E-6':1389,'E-7':1479,'O-3':1608,'O-4':1749,'O-5':1884,'O-6':2025},
+'Fort Cavazos':{'E-5':1287,'E-6':1389,'E-7':1479,'O-3':1608,'O-4':1749,'O-5':1884,'O-6':2025},
+'Fort Campbell':{'E-5':1206,'E-6':1305,'E-7':1392,'O-3':1518,'O-4':1653,'O-5':1785,'O-6':1920},
+'Fort Stewart':{'E-5':1281,'E-6':1383,'E-7':1473,'O-3':1602,'O-4':1743,'O-5':1878,'O-6':2016},
+'Joint Base Lewis-McChord':{'E-5':1734,'E-6':1842,'E-7':1938,'O-3':2079,'O-4':2229,'O-5':2373,'O-6':2520},
+'JBLM':{'E-5':1734,'E-6':1842,'E-7':1938,'O-3':2079,'O-4':2229,'O-5':2373,'O-6':2520},
+'Fort Drum':{'E-5':1254,'E-6':1356,'E-7':1443,'O-3':1569,'O-4':1710,'O-5':1842,'O-6':1980},
+'Fort Carson':{'E-5':1650,'E-6':1755,'E-7':1848,'O-3':1986,'O-4':2133,'O-5':2271,'O-6':2412},
+'Fort Bliss':{'E-5':1257,'E-6':1359,'E-7':1446,'O-3':1575,'O-4':1713,'O-5':1845,'O-6':1983},
+'Fort Riley':{'E-5':1110,'E-6':1200,'E-7':1281,'O-3':1398,'O-4':1527,'O-5':1650,'O-6':1779},
+'Fort Benning':{'E-5':1233,'E-6':1335,'E-7':1422,'O-3':1548,'O-4':1686,'O-5':1818,'O-6':1953},
+'Fort Moore':{'E-5':1233,'E-6':1335,'E-7':1422,'O-3':1548,'O-4':1686,'O-5':1818,'O-6':1953},
+'Fort Sill':{'E-5':1101,'E-6':1191,'E-7':1272,'O-3':1389,'O-4':1518,'O-5':1641,'O-6':1767},
+'Camp Pendleton':{'E-5':2280,'E-6':2415,'E-7':2538,'O-3':2712,'O-4':2895,'O-5':3069,'O-6':3243},
+'Camp Lejeune':{'E-5':1245,'E-6':1347,'E-7':1434,'O-3':1560,'O-4':1698,'O-5':1830,'O-6':1968},
+'Norfolk':{'E-5':1479,'E-6':1587,'E-7':1686,'O-3':1824,'O-4':1968,'O-5':2106,'O-6':2250},
+'San Diego':{'E-5':2400,'E-6':2544,'E-7':2676,'O-3':2862,'O-4':3051,'O-5':3234,'O-6':3417},
+'Pearl Harbor':{'E-5':2604,'E-6':2760,'E-7':2904,'O-3':3102,'O-4':3306,'O-5':3504,'O-6':3702},
+'Jacksonville':{'E-5':1380,'E-6':1485,'E-7':1578,'O-3':1713,'O-4':1857,'O-5':1995,'O-6':2136},
+'Pensacola':{'E-5':1305,'E-6':1407,'E-7':1497,'O-3':1629,'O-4':1770,'O-5':1905,'O-6':2046},
+'Washington DC':{'E-5':2265,'E-6':2400,'E-7':2523,'O-3':2700,'O-4':2880,'O-5':3054,'O-6':3228},
+'Peterson SFB':{'E-5':1650,'E-6':1755,'E-7':1848,'O-3':1986,'O-4':2133,'O-5':2271,'O-6':2412},
+'Buckley SFB':{'E-5':1911,'E-6':2028,'E-7':2133,'O-3':2286,'O-4':2448,'O-5':2604,'O-6':2763},
+'Vandenberg SFB':{'E-5':1950,'E-6':2070,'E-7':2178,'O-3':2334,'O-4':2499,'O-5':2658,'O-6':2817},
+'Patrick SFB':{'E-5':1455,'E-6':1563,'E-7':1662,'O-3':1800,'O-4':1944,'O-5':2082,'O-6':2223},
+'Los Angeles AFB':{'E-5':2640,'E-6':2799,'E-7':2943,'O-3':3147,'O-4':3357,'O-5':3561,'O-6':3762},
+'Schriever SFB':{'E-5':1650,'E-6':1755,'E-7':1848,'O-3':1986,'O-4':2133,'O-5':2271,'O-6':2412},
+'Eglin AFB':{'E-5':1353,'E-6':1455,'E-7':1548,'O-3':1683,'O-4':1824,'O-5':1962,'O-6':2103},
+'Travis AFB':{'E-5':2100,'E-6':2229,'E-7':2343,'O-3':2508,'O-4':2682,'O-5':2850,'O-6':3015},
+'Langley AFB':{'E-5':1479,'E-6':1587,'E-7':1686,'O-3':1824,'O-4':1968,'O-5':2106,'O-6':2250},
+'MacDill AFB':{'E-5':1500,'E-6':1611,'E-7':1710,'O-3':1854,'O-4':2001,'O-5':2142,'O-6':2289},
+'Fort Meade':{'E-5':1890,'E-6':2007,'E-7':2112,'O-3':2265,'O-4':2427,'O-5':2583,'O-6':2739},
+'Fort Eisenhower':{'E-5':1179,'E-6':1275,'E-7':1362,'O-3':1485,'O-4':1620,'O-5':1752,'O-6':1884},
+'Schofield Barracks':{'E-5':2604,'E-6':2760,'E-7':2904,'O-3':3102,'O-4':3306,'O-5':3504,'O-6':3702},
+'Fort Wainwright':{'E-5':1422,'E-6':1527,'E-7':1623,'O-3':1764,'O-4':1908,'O-5':2049,'O-6':2193},
+'Fort Huachuca':{'E-5':1104,'E-6':1194,'E-7':1275,'O-3':1392,'O-4':1521,'O-5':1644,'O-6':1770}
+};
+
+function find(name){
+var n=name.trim();
+for(var key in bah){
+if(n.toLowerCase().indexOf(key.toLowerCase())>=0||key.toLowerCase().indexOf(n.toLowerCase())>=0){
+return{name:key,rates:bah[key]};
+}
+}
+return null;
+}
+
+function k(){
+var cur=document.getElementById('b').value;
+var gain=document.getElementById('c').value;
+var grade=document.getElementById('e').value;
+var deps=document.getElementById('f').value;
+var housing=document.getElementById('g').value;
+var equity=document.getElementById('i').value;
+var va=document.getElementById('j').value;
+
+if(!cur||!gain||!grade){alert('Please fill in all required fields');return}
+
+var curStation=find(cur);
+var gainStation=find(gain);
+var curBAH=curStation&&curStation.rates[grade]?curStation.rates[grade]:1400;
+var gainBAH=gainStation&&gainStation.rates[grade]?gainStation.rates[grade]:1400;
+var delta=gainBAH-curBAH;
+var annual=delta*12;
+var curName=curStation?curStation.name:cur;
+var gainName=gainStation?gainStation.name:gain;
+
+var html='<div class="i">';
+html+='<div class="j"><span class="b">Current BAH</span><div class="k">$'+curBAH.toLocaleString()+'</div><p>'+curName+' | '+grade+'</p></div>';
+html+='<div class="j"><span class="b">Gaining BAH</span><div class="k">$'+gainBAH.toLocaleString()+'</div><p>'+gainName+' | '+grade+'</p></div>';
+html+='<div class="j"><span class="b">Monthly Delta</span><div class="k" style="color:'+(delta>=0?'#22c55e':'#ef4444')+'">'+(delta>=0?'+':'')+('$'+delta.toLocaleString())+'</div><p>'+(delta>=0?'Increase':'Decrease')+' | $'+Math.abs(annual).toLocaleString()+'/yr</p></div>';
+html+='</div>';
+
+html+='<div class="l"><h3>VA Loan Analysis</h3>';
+if(va==='Never used'||va==='Full entitlement available'){
+html+='<div class="m"><span>Entitlement Status</span><span style="color:#22c55e">Full Entitlement Available</span></div>';
+html+='<div class="m"><span>Recommendation</span><span style="color:#d4af37">Strong candidate for VA loan at '+gainName+'</span></div>';
+html+='<div class="m"><span>Down Payment Required</span><span>$0 (VA loan benefit)</span></div>';
+html+='<div class="m" style="border:none"><span>Funding Fee</span><span>2.15% first use (waived if VA disabled)</span></div>';
+}else{
+html+='<div class="m"><span>Entitlement Status</span><span style="color:#f59e0b">Currently In Use</span></div>';
+html+='<div class="m"><span>Recommendation</span><span style="color:#d4af37">Consider selling current home or using second-tier entitlement</span></div>';
+html+='<div class="m" style="border:none"><span>Second Use Funding Fee</span><span>3.3%</span></div>';
+}
+html+='</div>';
+
+if(housing==='Own'){
+html+='<div class="l"><h3>Current Home Options</h3>';
+html+='<div class="m"><span>Estimated Equity</span><span style="color:#d4af37">'+(equity||'Not provided')+'</span></div>';
+html+='<div class="m"><span>Option 1: Sell</span><span>Liquidate equity, use for down payment or investment</span></div>';
+html+='<div class="m"><span>Option 2: Rent</span><span>Keep as investment property, hire property manager</span></div>';
+html+='<div class="m" style="border:none"><span>Option 3: SCRA Protection</span><span>Review SCRA protections for mortgage rate and lease</span></div>';
+html+='</div>';
+}
+
+html+='<div class="n"><h3>30/60/90 Day PCS Financial Checklist</h3><ol>';
+html+='<li><strong>90 Days Out:</strong> Request weight tickets, review orders for entitlements, start home sale/lease break process</li>';
+html+='<li><strong>60 Days Out:</strong> Get BAH updated, research housing at '+gainName+', schedule DITY/PPM move if applicable</li>';
+html+='<li><strong>45 Days Out:</strong> File travel voucher prep, update DEERS, research schools if dependents</li>';
+html+='<li><strong>30 Days Out:</strong> Final weight ticket (before), confirm TMO pickup, update banking/mail forwarding</li>';
+html+='<li><strong>Report Date:</strong> Get weight ticket (after), file travel claim within 5 days, update BAH to new rate</li>';
+html+='<li><strong>30 Days After:</strong> Verify BAH at new rate, confirm all reimbursements received, update address everywhere</li>';
+html+='</ol></div>';
+
+html+='<div class="l"><h3>Moving Cost Reminders</h3>';
+html+='<div class="m"><span>DITY/PPM Move</span><span>Get weight tickets BEFORE and AFTER — required for reimbursement</span></div>';
+html+='<div class="m"><span>DLA</span><span>Dislocation Allowance: verify amount for '+grade+' '+(deps==='With'?'with':'without')+' dependents</span></div>';
+html+='<div class="m" style="border:none"><span>TLE</span><span>Temporary lodging expense: up to 10 days CONUS, 60 days OCONUS</span></div>';
+html+='</div>';
+
+html+='<div class="o"><h3>Need an Agent at '+gainName+'?</h3>';
+html+='<p>Joann Davis connects military families with trusted real estate agents nationwide.</p>';
+html+='<a href="https://joanndavishomes.com" class="p" target="_blank">Get Agent Referral</a></div>';
+
+var el=document.getElementById('a');
+el.innerHTML=html;
+el.style.display='block';
+el.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

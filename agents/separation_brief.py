@@ -1,6 +1,7 @@
 """
 Phrontis Financial - Separation Readiness Brief Generator
-Calls Anthropic Claude API to generate a personalized weekly brief
+Calls Anthropic Claude API to generate a personalized weekly brief.
+Accepts full intake data dict from n8n webhook.
 """
 
 import os
@@ -10,65 +11,113 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SEPARATION_DATE = date(2027, 8, 1)
+
+def days_until(separation_month: int, separation_year: int) -> int:
+    """Calculate days until separation date."""
+    try:
+        sep_date = date(separation_year, separation_month, 1)
+        return (sep_date - date.today()).days
+    except (ValueError, TypeError):
+        return 365
 
 
-def days_to_separation():
-    return (SEPARATION_DATE - date.today()).days
+def generate_brief(intake_data: dict) -> str:
+    """
+    Generate a personalized separation brief from intake data.
 
+    Args:
+        intake_data: Full intake form data dict with keys:
+            name, branch, grade, separation_month, separation_year,
+            tsp_balance, brs, family, spouse_works, housing, equity,
+            va_status, va_rating, concerns, phone, email, timezone, score
 
-def generate_brief(client_data: dict) -> str:
+    Returns:
+        SMS-ready brief text under 1600 characters.
+    """
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
+    name = intake_data.get("name", "Service Member")
+    branch = intake_data.get("branch", "")
+    grade = intake_data.get("grade", "")
+    sep_month = intake_data.get("separation_month", 1)
+    sep_year = intake_data.get("separation_year", 2027)
+    days = days_until(int(sep_month), int(sep_year))
+    tsp = intake_data.get("tsp_balance", "Unknown")
+    concerns = intake_data.get("concerns", "General planning")
+    score = intake_data.get("score", 50)
+    va_status = intake_data.get("va_status", "Not filed")
+    family = intake_data.get("family", "")
+    housing = intake_data.get("housing", "")
+
     prompt = f"""You are a military financial readiness analyst at Phrontis Financial.
-    Generate a weekly separation readiness brief for this servicemember:
+Generate a weekly separation readiness brief for this servicemember.
+The brief MUST be under 1600 characters total (SMS limit).
 
-    {client_data}
+SERVICE MEMBER PROFILE:
+- Name: {name}
+- Branch: {branch}
+- Grade: {grade}
+- Days to separation: {days}
+- TSP balance range: {tsp}
+- VA status: {va_status}
+- Family: {family}
+- Housing: {housing}
+- Top concerns: {concerns}
+- Readiness score: {score}/100
 
-    Days to separation: {days_to_separation()}
+Format the brief exactly as:
+PHRONTIS BRIEF | {datetime.now().strftime('%b %d, %Y')}
 
-    Format the brief exactly as:
-    PHRONTIS FINANCIAL - WEEKLY BRIEF
-    Date: [today]
-    Financial Readiness Score: [X]/100
+{name}, you have {days} days until separation.
 
-    CRITICAL ACTIONS THIS WEEK:
-    [numbered list, max 3]
+CRITICAL ACTIONS THIS WEEK:
+[3 specific, actionable items based on their profile and timeline]
 
-    UPCOMING DECISION WINDOWS:
-    [numbered list, max 3]
+DECISION WINDOW:
+[1 upcoming deadline or time-sensitive decision]
 
-    MARKET INTELLIGENCE:
-    [2 sentences on relevant financial conditions]
+SCORE: {score}/100
 
-    YOUR TRAJECTORY:
-    [2 sentences on projected financial position at separation]
+Reply BRIEF for full report | CALL to schedule CFP
 
-    Powered by Phrontis Financial | Built by a Space Force Guardian"""
+Keep it direct, military-style, no fluff. Under 1600 characters."""
 
     message = client.messages.create(
         model="claude-haiku-4-5-20251001",
-        max_tokens=1024,
-        messages=[{"role": "user", "content": prompt}]
+        max_tokens=600,
+        messages=[{"role": "user", "content": prompt}],
     )
 
-    return message.content[0].text
+    brief = message.content[0].text
+
+    if len(brief) > 1600:
+        brief = brief[:1597] + "..."
+
+    return brief
 
 
 if __name__ == "__main__":
-    demo_client = {
-        "name": "LTC David Parker",
-        "branch": "Space Force",
-        "pay_grade": "O-5",
-        "years_of_service": 12,
-        "tsp_balance": 387000,
-        "pension_eligible": True,
-        "sbp_decision_made": False,
-        "va_claim_filed": False,
-        "arktyx_83b_filed": False,
-        "llc_monthly_revenue": 8500,
-        "spouse_income": 94000
+    demo_intake = {
+        "name": "MAJ Webb",
+        "branch": "U.S. Army",
+        "grade": "O-4",
+        "separation_month": 7,
+        "separation_year": 2027,
+        "tsp_balance": "$150K-$300K",
+        "brs": "Yes",
+        "family": "Married with children",
+        "spouse_works": "Yes",
+        "housing": "Yes VA loan",
+        "equity": "$45,000",
+        "va_status": "No planning to",
+        "va_rating": "",
+        "concerns": "TSP decisions, VA claim",
+        "phone": "+15551234567",
+        "email": "demo@example.com",
+        "timezone": "ET",
+        "score": 58,
     }
 
-    brief = generate_brief(demo_client)
+    brief = generate_brief(demo_intake)
     print(brief)
+    print(f"\n--- Length: {len(brief)} chars ---")
