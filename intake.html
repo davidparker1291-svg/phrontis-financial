@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Intake — Phrontis Financial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.a{width:100%;max-width:560px;padding:24px;margin:0 auto}
+.b{text-transform:uppercase;font-size:11px;letter-spacing:3px;color:#d4af37}
+.c{width:100%;height:4px;background:#111827;border-radius:2px;margin-bottom:32px;overflow:hidden}
+.c div{height:100%;background:#d4af37;border-radius:2px;transition:width 0.4s ease}
+.d{text-align:center;margin-bottom:40px}
+.d h1{font-size:32px;font-weight:700;margin-bottom:12px}
+.d p{color:#94a3b8;font-size:14px}
+.e{display:none}
+.e.f{display:block}
+.e label{display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;margin-bottom:8px}
+.e input,.e select{width:100%;padding:14px 18px;background:#111827;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#fff;font-family:Arial,sans-serif;font-size:16px;margin-bottom:16px}
+.e input:focus,.e select:focus{outline:none;border-color:#d4af37}
+.g{display:flex;gap:12px;margin-top:24px}
+.h{flex:1;padding:14px;font-size:14px;font-weight:700;border-radius:6px;border:none;cursor:pointer;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;transition:opacity 0.3s}
+.h:hover{opacity:0.85}
+.i{background:#d4af37;color:#0a0e1a}
+.j{background:transparent;border:1px solid rgba(212,175,55,0.3);color:#d4af37}
+.k{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.k label{display:flex;align-items:center;gap:8px;background:#111827;border:1px solid rgba(212,175,55,0.15);border-radius:6px;padding:10px 16px;cursor:pointer;font-size:13px;color:#94a3b8;transition:border-color 0.2s}
+.k label:hover{border-color:#d4af37}
+.k input[type="checkbox"]{accent-color:#d4af37}
+.k input[type="checkbox"]:checked+span{color:#fff}
+.l{color:#d4af37;font-size:14px;margin-top:8px;font-weight:700}
+.m{text-align:center;padding:60px 20px}
+.m h2{font-size:28px;margin-bottom:12px}
+.m p{color:#94a3b8;font-size:14px}
+.n{display:inline-block;width:32px;height:32px;border:3px solid #d4af37;border-top-color:transparent;border-radius:50%;animation:o 0.8s linear infinite;margin-bottom:16px}
+@keyframes o{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="a">
+<div class="c"><div id="a" style="width:10%"></div></div>
+<p class="b" style="text-align:center;margin-bottom:24px" id="b">Step 1 of 10</p>
+
+<div class="e f" id="c">
+<div class="d"><h1>What is your name?</h1><p>We will use this to personalize your experience</p></div>
+<label>First Name</label>
+<input type="text" id="d" placeholder="Your first name" required autofocus>
+<div class="g"><div style="flex:1"></div><button class="h i" onclick="q(2)">Continue</button></div>
+</div>
+
+<div class="e" id="e">
+<div class="d"><h1>What branch do you serve in?</h1><p>Select your branch of service</p></div>
+<label>Branch</label>
+<select id="f">
+<option value="">Select branch</option>
+<option>Army</option><option>Navy</option><option>Marine Corps</option><option>Air Force</option><option>Space Force</option><option>Coast Guard</option><option>National Guard</option><option>Veteran</option>
+</select>
+<div class="g"><button class="h j" onclick="q(1)">Back</button><button class="h i" onclick="q(3)">Continue</button></div>
+</div>
+
+<div class="e" id="g">
+<div class="d"><h1>What is your current pay grade?</h1><p>This helps us model your financial picture accurately</p></div>
+<label>Pay Grade</label>
+<select id="h">
+<option value="">Select pay grade</option>
+<optgroup label="Enlisted">
+<option>E-1</option><option>E-2</option><option>E-3</option><option>E-4</option><option>E-5</option><option>E-6</option><option>E-7</option><option>E-8</option><option>E-9</option>
+</optgroup>
+<optgroup label="Warrant Officer">
+<option>W-1</option><option>W-2</option><option>W-3</option><option>W-4</option><option>W-5</option>
+</optgroup>
+<optgroup label="Officer">
+<option>O-1</option><option>O-2</option><option>O-3</option><option>O-4</option><option>O-5</option><option>O-6</option><option>O-7</option><option>O-8</option><option>O-9</option><option>O-10</option>
+</optgroup>
+<option>Separated/Retired</option>
+</select>
+<div class="g"><button class="h j" onclick="q(2)">Back</button><button class="h i" onclick="q(4)">Continue</button></div>
+</div>
+
+<div class="e" id="i">
+<div class="d"><h1>What is your planned separation date?</h1><p>We will build your countdown from this date</p></div>
+<label>Month</label>
+<select id="j">
+<option value="">Select month</option>
+<option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+</select>
+<label>Year</label>
+<select id="k">
+<option value="">Select year</option>
+<option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option>
+</select>
+<div class="l" id="l"></div>
+<div class="g"><button class="h j" onclick="q(3)">Back</button><button class="h i" onclick="q(5)">Continue</button></div>
+</div>
+
+<div class="e" id="m">
+<div class="d"><h1>What is your current TSP balance?</h1><p>This helps us optimize your retirement strategy</p></div>
+<label>TSP Balance Range</label>
+<select id="n">
+<option value="">Select range</option>
+<option>Under $10K</option><option>$10K-$50K</option><option>$50K-$100K</option><option>$100K-$150K</option><option>$150K-$300K</option><option>$300K-$500K</option><option>$500K+</option>
+</select>
+<label>Are you in the Blended Retirement System (BRS)?</label>
+<select id="o">
+<option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
+</select>
+<div class="g"><button class="h j" onclick="q(4)">Back</button><button class="h i" onclick="q(6)">Continue</button></div>
+</div>
+
+<div class="e" id="p">
+<div class="d"><h1>What is your family situation?</h1><p>Family status affects many financial decisions at separation</p></div>
+<label>Status</label>
+<select id="r">
+<option value="">Select</option>
+<option>Single</option><option>Married no children</option><option>Married with children</option><option>Single parent</option>
+</select>
+<label>Does your spouse work?</label>
+<select id="s">
+<option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="N/A">N/A</option>
+</select>
+<div class="g"><button class="h j" onclick="q(5)">Back</button><button class="h i" onclick="q(7)">Continue</button></div>
+</div>
+
+<div class="e" id="t">
+<div class="d"><h1>Do you own a home?</h1><p>Housing is one of the biggest financial decisions at separation</p></div>
+<label>Housing Status</label>
+<select id="u" onchange="document.getElementById('v').style.display=this.value.indexOf('Yes')===0?'block':'none'">
+<option value="">Select</option>
+<option>Yes VA loan</option><option>Yes conventional</option><option>No renting on-post</option><option>No renting off-post</option>
+</select>
+<div id="v" style="display:none">
+<label>Estimated Home Equity</label>
+<input type="text" id="w" placeholder="$50,000">
+</div>
+<div class="g"><button class="h j" onclick="q(6)">Back</button><button class="h i" onclick="q(8)">Continue</button></div>
+</div>
+
+<div class="e" id="x">
+<div class="d"><h1>VA disability claim status?</h1><p>VA benefits can significantly change your financial picture</p></div>
+<label>Claim Status</label>
+<select id="y" onchange="document.getElementById('z').style.display=this.value==='Yes rated'?'block':'none'">
+<option value="">Select</option>
+<option>Yes rated</option><option>Yes pending</option><option>No planning to</option><option>No not sure</option>
+</select>
+<div id="z" style="display:none">
+<label>Current Rating %</label>
+<select id="aa">
+<option value="">Select rating</option>
+<option>0%</option><option>10%</option><option>20%</option><option>30%</option><option>40%</option><option>50%</option><option>60%</option><option>70%</option><option>80%</option><option>90%</option><option>100%</option>
+</select>
+</div>
+<div class="g"><button class="h j" onclick="q(7)">Back</button><button class="h i" onclick="q(9)">Continue</button></div>
+</div>
+
+<div class="e" id="ab">
+<div class="d"><h1>What are your biggest financial concerns?</h1><p>Select all that apply</p></div>
+<div class="k">
+<label><input type="checkbox" value="Replacing income"><span>Replacing income</span></label>
+<label><input type="checkbox" value="TSP decisions"><span>TSP decisions</span></label>
+<label><input type="checkbox" value="VA claim"><span>VA claim</span></label>
+<label><input type="checkbox" value="Health insurance"><span>Health insurance</span></label>
+<label><input type="checkbox" value="SBP"><span>SBP</span></label>
+<label><input type="checkbox" value="Home decision"><span>Home decision</span></label>
+<label><input type="checkbox" value="Starting a business"><span>Starting a business</span></label>
+<label><input type="checkbox" value="General planning"><span>General planning</span></label>
+</div>
+<div class="g"><button class="h j" onclick="q(8)">Back</button><button class="h i" onclick="q(10)">Continue</button></div>
+</div>
+
+<div class="e" id="ac">
+<div class="d"><h1>How should we reach you?</h1><p>For your weekly SMS brief delivery</p></div>
+<label>Phone Number</label>
+<input type="tel" id="ad" placeholder="(555) 555-5555" required>
+<label>Email</label>
+<input type="email" id="ae" placeholder="you@email.com" required>
+<label>Timezone</label>
+<select id="af">
+<option value="">Select timezone</option>
+<option>ET</option><option>CT</option><option>MT</option><option>PT</option><option>AK</option><option>HI</option>
+</select>
+<div class="g"><button class="h j" onclick="q(9)">Back</button><button class="h i" id="ag" onclick="ah()">Submit</button></div>
+</div>
+
+<div class="e" id="ai">
+<div class="m">
+<div class="n"></div>
+<h2>Building your financial profile...</h2>
+<p>Analyzing your military financial picture</p>
+</div>
+</div>
+</div>
+
+<script>
+var p=[null,'c','e','g','i','m','p','t','x','ab','ac'];
+var s=1;
+function q(n){
+if(n<1||n>10)return;
+if(n===4){
+var mm=document.getElementById('j').value;
+var yy=document.getElementById('k').value;
+if(mm&&yy){
+var sd=new Date(parseInt(yy),parseInt(mm)-1,1);
+var td=new Date();
+var dd=Math.ceil((sd-td)/(1000*60*60*24));
+document.getElementById('l').textContent='That is '+dd+' days from today';
+}
+}
+document.querySelectorAll('.e').forEach(function(el){el.classList.remove('f')});
+document.getElementById(p[n]).classList.add('f');
+s=n;
+document.getElementById('a').style.width=(n*10)+'%';
+document.getElementById('b').textContent='Step '+n+' of 10';
+}
+function ah(){
+var mm=document.getElementById('j').value;
+var yy=document.getElementById('k').value;
+var dd=0;
+if(mm&&yy){
+var sd=new Date(parseInt(yy),parseInt(mm)-1,1);
+dd=Math.ceil((sd-new Date())/(1000*60*60*24));
+}
+var cc=[];
+document.querySelectorAll('.k input[type="checkbox"]:checked').forEach(function(cb){cc.push(cb.value)});
+var sc=35;
+var va=document.getElementById('y').value;
+if(va==='Yes rated'||va==='Yes pending')sc+=20;
+var tb=document.getElementById('n').value;
+if(tb&&tb.indexOf('100')>=0||tb&&tb.indexOf('150')>=0||tb&&tb.indexOf('300')>=0||tb&&tb.indexOf('500')>=0)sc+=15;
+if(mm&&yy)sc+=10;
+if(cc.indexOf('SBP')>=0)sc+=10;
+if(cc.length>0)sc+=10;
+var data={
+name:document.getElementById('d').value,
+branch:document.getElementById('f').value,
+grade:document.getElementById('h').value,
+separation_month:mm,
+separation_year:yy,
+days:dd,
+tsp_balance:document.getElementById('n').value,
+brs:document.getElementById('o').value,
+family:document.getElementById('r').value,
+spouse_works:document.getElementById('s').value,
+housing:document.getElementById('u').value,
+equity:document.getElementById('w').value,
+va_status:va,
+va_rating:document.getElementById('aa').value,
+concerns:cc.join(', '),
+phone:document.getElementById('ad').value,
+email:document.getElementById('ae').value,
+timezone:document.getElementById('af').value,
+score:sc,
+source:'intake_form',
+timestamp:new Date().toISOString()
+};
+document.querySelectorAll('.e').forEach(function(el){el.classList.remove('f')});
+document.getElementById('ai').classList.add('f');
+document.getElementById('a').style.width='100%';
+document.getElementById('b').textContent='Processing';
+fetch('https://n8n.phrontisleadnetworks.com/webhook/pf-intake',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify(data)
+}).then(function(){}).catch(function(){}).finally(function(){
+setTimeout(function(){
+var params='?name='+encodeURIComponent(data.name)+'&branch='+encodeURIComponent(data.branch)+'&grade='+encodeURIComponent(data.grade)+'&days='+dd+'&tsp='+encodeURIComponent(data.tsp_balance)+'&concern='+encodeURIComponent(cc[0]||'General planning')+'&score='+sc;
+window.location.href='/dashboard.html'+params;
+},2000);
+});
+}
+document.addEventListener('keydown',function(ev){
+if(ev.key==='Enter'){
+ev.preventDefault();
+if(s<10)q(s+1);
+else if(s===10)ah();
+}
+});
+</script>
+</body>
+</html>

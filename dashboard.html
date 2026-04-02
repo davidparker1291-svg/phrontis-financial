@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Phrontis Financial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;font-size:13px;line-height:1.6}
+.a{max-width:1200px;margin:0 auto;padding:0 24px}
+.b{text-transform:uppercase;font-size:11px;letter-spacing:3px;color:#d4af37}
+header{background:rgba(10,14,26,0.95);border-bottom:1px solid rgba(212,175,55,0.15);padding:16px 0;position:sticky;top:0;z-index:100}
+header .a{display:flex;align-items:center;justify-content:space-between}
+.c{font-size:14px;font-weight:700;letter-spacing:2px;color:#d4af37;text-transform:uppercase;text-decoration:none}
+nav a{color:#94a3b8;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-left:24px;text-decoration:none}
+nav a:hover{color:#d4af37}
+.d{padding:40px 0 20px}
+.d h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.d p{color:#94a3b8;font-size:14px}
+.e{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:28px 0}
+.f{background:#111827;border-radius:10px;padding:24px;border:1px solid rgba(212,175,55,0.1)}
+.f .b{margin-bottom:8px;display:block}
+.f .g{font-size:32px;font-weight:700;color:#d4af37}
+.f p{color:#94a3b8;font-size:12px;margin-top:4px}
+.h{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.i{background:#111827;border-radius:10px;padding:28px;border:1px solid rgba(212,175,55,0.1)}
+.i h3{font-size:16px;margin-bottom:16px}
+.j{display:flex;justify-content:center;align-items:center;padding:20px 0}
+.k{background:#111827;border-radius:10px;padding:28px;border:2px solid rgba(212,175,55,0.3);margin-bottom:28px}
+.k h3{font-size:16px;margin-bottom:16px}
+.l{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.08);font-size:13px}
+.l span:first-child{color:#94a3b8}
+.l span:last-child{font-weight:700}
+.m{background:#111827;border-radius:10px;padding:28px;border:1px solid rgba(212,175,55,0.1);margin-bottom:28px}
+.m h3{font-size:16px;margin-bottom:16px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d4af37;padding:10px 12px;border-bottom:1px solid rgba(212,175,55,0.2)}
+td{padding:10px 12px;border-bottom:1px solid rgba(212,175,55,0.06);font-size:13px;color:#94a3b8}
+.n{display:inline-block;padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.o{background:rgba(239,68,68,0.15);color:#ef4444}
+.p{background:rgba(245,158,11,0.15);color:#f59e0b}
+.q{background:rgba(34,197,94,0.15);color:#22c55e}
+.r{background:#111827;border-radius:10px;padding:28px;border:2px solid #d4af37;margin-bottom:28px}
+.r h3{font-size:16px;margin-bottom:8px}
+.r p{color:#94a3b8;font-size:13px;margin-bottom:16px}
+.s{display:inline-block;padding:12px 32px;background:#d4af37;color:#0a0e1a;font-weight:700;border-radius:6px;text-decoration:none;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-right:12px;transition:opacity 0.3s}
+.s:hover{opacity:0.85;text-decoration:none}
+.t{display:inline-block;padding:12px 32px;border:1px solid #d4af37;color:#d4af37;font-weight:700;border-radius:6px;text-decoration:none;font-size:13px;text-transform:uppercase;letter-spacing:1px;transition:opacity 0.3s}
+.t:hover{opacity:0.85;text-decoration:none}
+footer{border-top:1px solid rgba(212,175,55,0.1);padding:24px 0;text-align:center;color:#94a3b8;font-size:11px;margin-top:40px}
+@media(max-width:900px){.e{grid-template-columns:repeat(2,1fr)}.h{grid-template-columns:1fr}header nav{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="a">
+<a href="/" class="c">Phrontis Financial</a>
+<nav>
+<a href="/va-optimizer.html">VA Optimizer</a>
+<a href="/pcs-command.html">PCS Command</a>
+<a href="/subscribe.html">Upgrade</a>
+</nav>
+</div>
+</header>
+
+<div class="a">
+<div class="d">
+<h1 id="a"></h1>
+<p id="b"></p>
+</div>
+
+<div class="e">
+<div class="f">
+<span class="b">Days to Separation</span>
+<div class="g" id="c"></div>
+<p>Your countdown is active</p>
+</div>
+<div class="f">
+<span class="b">TSP Contribution Window</span>
+<div class="g" id="d"></div>
+<p>Final contributions before separation</p>
+</div>
+<div class="f">
+<span class="b">SBP Election Deadline</span>
+<div class="g" id="e"></div>
+<p>60 days before separation</p>
+</div>
+<div class="f">
+<span class="b">Pension Start Date</span>
+<div class="g" id="f"></div>
+<p>If eligible for retirement</p>
+</div>
+</div>
+
+<div class="h">
+<div class="i">
+<h3>Net Worth Snapshot</h3>
+<div class="l"><span>TSP Balance</span><span id="g"></span></div>
+<div class="l"><span>Home Equity</span><span id="h"></span></div>
+<div class="l"><span>Savings</span><span>$12,500</span></div>
+<div class="l"><span>Vehicle</span><span>$18,000</span></div>
+<div class="l" style="border-bottom:none"><span>Student Loans</span><span style="color:#ef4444">-$22,000</span></div>
+<div style="border-top:2px solid #d4af37;margin-top:12px;padding-top:12px">
+<div class="l" style="border:none"><span style="color:#d4af37;font-weight:700">NET WORTH</span><span style="color:#d4af37;font-size:28px" id="i"></span></div>
+</div>
+</div>
+<div class="i">
+<h3>Financial Readiness Score</h3>
+<div class="j">
+<svg width="200" height="200" viewBox="0 0 200 200">
+<circle cx="100" cy="100" r="85" fill="none" stroke="#1e293b" stroke-width="12"/>
+<circle cx="100" cy="100" r="85" fill="none" stroke="#d4af37" stroke-width="12" stroke-linecap="round" stroke-dasharray="534" id="j" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 1.5s ease"/>
+<text x="100" y="90" text-anchor="middle" fill="#d4af37" font-size="48" font-weight="700" font-family="Arial" id="k"></text>
+<text x="100" y="115" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="Arial">READINESS</text>
+</svg>
+</div>
+<p style="text-align:center;color:#94a3b8;font-size:12px;margin-top:8px" id="l"></p>
+</div>
+</div>
+
+<div class="h">
+<div class="i">
+<h3>TSP Optimizer</h3>
+<div class="l"><span>Current Balance</span><span id="m"></span></div>
+<div class="l"><span>Projected at Separation (Traditional)</span><span id="n"></span></div>
+<div class="l"><span>Projected at Separation (Roth)</span><span id="o"></span></div>
+<div class="l" style="border:none"><span>Recommendation</span><span style="color:#d4af37" id="p"></span></div>
+</div>
+<div class="k">
+<h3>AI Weekly Brief Preview</h3>
+<p class="b" style="margin-bottom:12px">Monday SMS Brief</p>
+<div style="background:#0a0e1a;border-radius:8px;padding:20px;font-size:13px;color:#94a3b8;line-height:1.8" id="q"></div>
+</div>
+</div>
+
+<div class="m">
+<h3>Decision Matrix</h3>
+<table>
+<tr><th>Decision</th><th>Status</th><th>Priority</th><th>Action</th></tr>
+<tbody id="r"></tbody>
+</table>
+</div>
+
+<div class="r">
+<h3>Connect With Your CFP Partner</h3>
+<p>Jordan reviews every brief and is available for personalized consultations. Get expert guidance on your transition decisions.</p>
+<a href="#" class="s">Schedule CFP Consultation</a>
+<a href="/subscribe.html" class="t">Upgrade to Operator $149/mo</a>
+</div>
+</div>
+
+<footer>
+<div class="a">2026 Phrontis Financial LLC | Not financial advice. CFP services provided by independent practitioner.</div>
+</footer>
+
+<script>
+var params=new URLSearchParams(window.location.search);
+var user={
+name:params.get('name')||'Service Member',
+branch:params.get('branch')||'U.S. Army',
+grade:params.get('grade')||'O-4',
+days:parseInt(params.get('days'))||487,
+tsp:params.get('tsp')||'$150K-$300K',
+concern:params.get('concern')||'TSP decisions',
+score:parseInt(params.get('score'))||58
+};
+
+document.getElementById('a').textContent='Welcome back, '+user.name;
+document.getElementById('b').textContent=user.branch+' | '+user.grade+' | Separating in '+user.days+' days';
+
+document.getElementById('c').textContent=user.days;
+document.getElementById('d').textContent=Math.max(0,user.days-30);
+document.getElementById('e').textContent=Math.max(0,user.days-60);
+var pd=new Date();pd.setDate(pd.getDate()+user.days);
+document.getElementById('f').textContent=(pd.getMonth()+1)+'/'+pd.getFullYear();
+
+var tspMap={'Under $10K':5000,'$10K-$50K':30000,'$50K-$100K':75000,'$100K-$150K':125000,'$150K-$300K':225000,'$300K-$500K':400000,'$500K+':600000};
+var tspVal=tspMap[user.tsp]||225000;
+document.getElementById('g').textContent='$'+tspVal.toLocaleString();
+document.getElementById('h').textContent='$45,000';
+var nw=tspVal+45000+12500+18000-22000;
+document.getElementById('i').textContent='$'+nw.toLocaleString();
+
+document.getElementById('k').textContent=user.score;
+var arc=534*(1-user.score/100);
+document.getElementById('j').setAttribute('stroke-dashoffset',arc);
+
+var actions={
+'TSP decisions':'Review your TSP allocation and maximize contributions before separation',
+'Replacing income':'Build your income replacement plan — target 80% of base pay minimum',
+'VA claim':'Start your VA disability claim process immediately',
+'Health insurance':'Research TRICARE continuation and marketplace options',
+'SBP':'Evaluate SBP election — deadline is 60 days before separation',
+'Home decision':'Analyze your housing options at your next location',
+'Starting a business':'Begin your business plan and explore SBA veteran programs',
+'General planning':'Complete all sections of your financial readiness checklist'
+};
+document.getElementById('l').textContent='Top action: '+(actions[user.concern]||actions['General planning']);
+
+document.getElementById('m').textContent='$'+tspVal.toLocaleString();
+var growthMonths=user.days/30;
+var tradProj=Math.round(tspVal*Math.pow(1+0.07/12,growthMonths));
+var rothProj=Math.round(tspVal*Math.pow(1+0.08/12,growthMonths));
+document.getElementById('n').textContent='$'+tradProj.toLocaleString();
+document.getElementById('o').textContent='$'+rothProj.toLocaleString();
+document.getElementById('p').textContent=user.grade.charAt(0)==='E'?'Consider Roth — lower tax bracket now':'Evaluate Traditional — higher bracket may benefit';
+
+document.getElementById('q').innerHTML='PHRONTIS BRIEF | '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'<br><br>'+user.name+', you have '+user.days+' days until separation.<br><br>TOP ACTION: '+(actions[user.concern]||actions['General planning'])+'<br><br>TSP: $'+tspVal.toLocaleString()+' | Projected: $'+tradProj.toLocaleString()+'<br>Score: '+user.score+'/100<br><br>Reply BRIEF for full report | CALL to schedule CFP';
+
+var decisions=[
+{d:'TSP Allocation Review',s:tspVal>100000?'complete':'action',pr:tspVal>100000?'STANDARD':'HIGH',act:tspVal>100000?'On track':'Maximize contributions'},
+{d:'VA Disability Claim',s:user.concern==='VA claim'?'critical':'action',pr:'CRITICAL',act:'Start claim process'},
+{d:'SBP Election',s:user.days>60?'action':'critical',pr:user.days>60?'HIGH':'CRITICAL',act:user.days>60?'Review options':'Deadline approaching'},
+{d:'Health Insurance Transition',s:'action',pr:'HIGH',act:'Research TRICARE continuation'},
+{d:'Housing Decision',s:'action',pr:'STANDARD',act:'Analyze buy vs rent at next location'},
+{d:'Income Replacement Plan',s:user.concern==='Replacing income'?'critical':'action',pr:'HIGH',act:'Build 6-month runway'},
+{d:'Emergency Fund',s:'action',pr:'STANDARD',act:'Target 6 months expenses'}
+];
+var tbody=document.getElementById('r');
+decisions.forEach(function(row){
+var cls=row.s==='critical'?'o':row.s==='action'?'p':'q';
+var tr=document.createElement('tr');
+if(row.s==='critical')tr.style.background='rgba(239,68,68,0.04)';
+if(row.s==='action')tr.style.background='rgba(245,158,11,0.03)';
+tr.innerHTML='<td style="color:#fff;font-weight:600">'+row.d+'</td><td><span class="n '+cls+'">'+row.s.toUpperCase()+'</span></td><td>'+row.pr+'</td><td>'+row.act+'</td>';
+tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>

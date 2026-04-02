@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrontis Financial — AI Financial OS for the Military Life Transition</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;font-size:13px;line-height:1.6;overflow-x:hidden}
+a{color:#d4af37;text-decoration:none}
+a:hover{text-decoration:underline}
+.a{max-width:1200px;margin:0 auto;padding:0 24px}
+.b{text-transform:uppercase;font-size:11px;letter-spacing:3px;color:#d4af37}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,0.92);border-bottom:1px solid rgba(212,175,55,0.15);padding:16px 0}
+header .a{display:flex;align-items:center;justify-content:space-between}
+.c{font-size:14px;font-weight:700;letter-spacing:2px;color:#d4af37;text-transform:uppercase}
+nav a{color:#94a3b8;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-left:28px}
+nav a:hover{color:#d4af37;text-decoration:none}
+section{position:relative;z-index:1;padding:100px 0}
+.d{min-height:100vh;display:flex;align-items:center;padding-top:80px}
+.d .a{text-align:center;max-width:800px}
+.e{display:inline-block;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);border-radius:20px;padding:6px 18px;margin-bottom:24px}
+.d h1{font-size:48px;font-weight:700;line-height:1.15;margin-bottom:20px;animation:f 1.5s ease-in-out}
+@keyframes f{0%{opacity:0.4}50%{text-shadow:0 0 20px rgba(212,175,55,0.4)}100%{opacity:1;text-shadow:none}}
+.d p{font-size:16px;color:#94a3b8;max-width:620px;margin:0 auto 36px}
+.g{display:inline-block;padding:14px 36px;font-size:14px;font-weight:700;border-radius:6px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:opacity 0.3s}
+.g:hover{opacity:0.85;text-decoration:none}
+.h{background:#d4af37;color:#0a0e1a;margin-right:16px}
+.i{border:2px solid #d4af37;color:#d4af37;background:transparent}
+.j{background:#111827;border-radius:12px;padding:40px;border:1px solid rgba(212,175,55,0.1)}
+#n .a{text-align:center}
+#n h2{font-size:32px;margin-bottom:48px}
+.k{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:24px}
+.k .j{text-align:center}
+.k .l{font-size:48px;font-weight:700;color:#d4af37}
+.k p{color:#94a3b8;margin-top:8px;font-size:13px}
+#ho .a{text-align:center}
+#ho h2{font-size:32px;margin-bottom:48px}
+.m{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;text-align:left;max-width:900px;margin:0 auto}
+.n{display:flex;align-items:flex-start;gap:20px}
+.o{width:44px;height:44px;min-width:44px;border-radius:50%;border:2px solid #d4af37;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#d4af37}
+.n h3{font-size:15px;margin-bottom:4px}
+.n p{color:#94a3b8;font-size:13px}
+#mo h2{font-size:32px;text-align:center;margin-bottom:48px}
+.p{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.q{background:#111827;border-radius:10px;padding:28px 28px 28px 31px;border-left:3px solid #d4af37;position:relative}
+.q .b{margin-bottom:8px;display:block}
+.q p{color:#94a3b8;font-size:13px}
+.r{position:absolute;top:16px;right:16px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;background:rgba(148,163,184,0.1);padding:3px 10px;border-radius:10px}
+#pr{text-align:center}
+#pr h2{font-size:32px;margin-bottom:48px}
+.s{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.t{background:#111827;border-radius:12px;padding:32px 24px;border:1px solid rgba(212,175,55,0.1);text-align:left;display:flex;flex-direction:column}
+.t.u{border:2px solid #d4af37;position:relative}
+.u::after{content:'MOST POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#d4af37;color:#0a0e1a;font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 14px;border-radius:10px}
+.t h3{font-size:20px;margin-bottom:4px}
+.v{font-size:32px;font-weight:700;color:#d4af37;margin-bottom:16px}
+.v span{font-size:14px;color:#94a3b8;font-weight:400}
+.t ul{list-style:none;flex:1;margin-bottom:20px}
+.t ul li{color:#94a3b8;font-size:12px;padding:6px 0;border-bottom:1px solid rgba(148,163,184,0.08)}
+.t ul li::before{content:'\2713';color:#d4af37;margin-right:8px}
+.t .g{width:100%;text-align:center;display:block;font-size:12px;padding:12px}
+#co{text-align:center}
+#co h2{font-size:32px;margin-bottom:32px}
+#co form{max-width:600px;margin:0 auto;text-align:left}
+.w{margin-bottom:16px}
+.w label{display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;margin-bottom:6px}
+.w input,.w select,.w textarea{width:100%;padding:12px 16px;background:#111827;border:1px solid rgba(212,175,55,0.2);border-radius:6px;color:#fff;font-family:Arial,sans-serif;font-size:14px}
+.w textarea{height:80px;resize:vertical}
+.w input:focus,.w select:focus,.w textarea:focus{outline:none;border-color:#d4af37}
+footer{position:relative;z-index:1;border-top:1px solid rgba(212,175,55,0.1);padding:40px 0 24px}
+.x{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;margin-bottom:24px}
+.y{color:#94a3b8;font-size:11px;text-align:center;padding-top:16px;border-top:1px solid rgba(212,175,55,0.08)}
+@media(max-width:900px){.k,.p,.s{grid-template-columns:1fr}.m{grid-template-columns:1fr}.d h1{font-size:32px}header nav{display:none}}
+</style>
+</head>
+<body>
+<canvas id="a"></canvas>
+<header>
+<div class="a">
+<div class="c">Phrontis Financial</div>
+<nav>
+<a href="/intake.html">Start Brief</a>
+<a href="#mo">Modules</a>
+<a href="#pr">Pricing</a>
+<a href="/jordan.html">For CFPs</a>
+<a href="/va-optimizer.html">VA Optimizer</a>
+</nav>
+</div>
+</header>
+<section class="d" id="m">
+<div class="a">
+<div class="e"><span class="b">Built by a Space Force Guardian</span></div>
+<h1>The AI Financial Operating System Built for the Military Life Transition</h1>
+<p>200,000 servicemembers separate every year. Most leave money on the table. Phrontis Financial changes that.</p>
+<div>
+<a href="/intake.html" class="g h">Start Your Financial Brief</a>
+<a href="#ho" class="g i">See How It Works</a>
+</div>
+</div>
+</section>
+<section id="n">
+<div class="a">
+<h2>The Problem</h2>
+<div class="k" id="b">
+<div class="j">
+<div class="l" data-target="130000" data-prefix="$">$0</div>
+<p>Average lifetime VA benefits left unclaimed</p>
+</div>
+<div class="j">
+<div class="l" data-target="67" data-suffix="%">0%</div>
+<p>Servicemembers reporting financial stress within 12 months of separation</p>
+</div>
+<div class="j">
+<div class="l" data-target="11">0</div>
+<p>Simultaneous financial decisions at separation</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ho">
+<div class="a">
+<h2>How It Works</h2>
+<div class="m">
+<div class="n">
+<div class="o">1</div>
+<div><h3>Complete Your 10-Minute Financial Intake</h3><p>We map your full military financial picture</p></div>
+</div>
+<div class="n">
+<div class="o">2</div>
+<div><h3>Receive Your AI Separation Brief</h3><p>Personalized action plan delivered by SMS every Monday</p></div>
+</div>
+<div class="n">
+<div class="o">3</div>
+<div><h3>Connect With Your CFP Partner</h3><p>Jordan reviews every brief, available for consultations</p></div>
+</div>
+<div class="n">
+<div class="o">4</div>
+<div><h3>Execute Your Transition</h3><p>Tools, timelines, and expert guidance through separation day</p></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mo">
+<div class="a">
+<h2>Product Modules</h2>
+<div class="p">
+<div class="q">
+<span class="b">Separation Command</span>
+<span class="r">Included All Tiers</span>
+<p>Your countdown with every financial milestone mapped to your exact separation date.</p>
+</div>
+<div class="q">
+<span class="b">TSP Optimizer</span>
+<span class="r">Included All Tiers</span>
+<p>Roth vs Traditional modeling built for the military pay structure.</p>
+</div>
+<div class="q">
+<span class="b">VA Disability Optimizer</span>
+<span class="r">Operator + Unit</span>
+<p>AI-guided claim prep. Average veteran leaves $130K unclaimed.</p>
+</div>
+<div class="q">
+<span class="b">PCS Financial Command</span>
+<span class="r">Operator + Unit</span>
+<p>BAH comparison, VA loan, buy vs rent — delivered day orders drop.</p>
+</div>
+<div class="q">
+<span class="b">Military Spouse Track</span>
+<span class="r">Operator + Unit</span>
+<p>Financial independence planning for the spouse behind the uniform.</p>
+</div>
+<div class="q">
+<span class="b">Separation War Room</span>
+<span class="r">Unit Command</span>
+<p>90-day intensive cohort, weekly briefs, direct CFP access. 20 per cohort.</p>
+</div>
+<div class="q" style="grid-column:1/-1;max-width:calc(50% - 12px)">
+<span class="b">Trading Command</span>
+<span class="r">Self-Directed Not Financial Advice</span>
+<p>Self-directed investing education for servicemembers building wealth beyond TSP.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pr">
+<div class="a">
+<h2>Choose Your Plan</h2>
+<div class="s">
+<div class="t">
+<h3>Basic</h3>
+<div class="v">$49<span>/month</span></div>
+<ul>
+<li>Separation dashboard</li>
+<li>TSP calculator</li>
+<li>Monthly SMS brief</li>
+<li>Pension optimizer</li>
+</ul>
+<a href="/subscribe.html" class="g h">Get Started</a>
+</div>
+<div class="t u">
+<h3>Operator</h3>
+<div class="v">$149<span>/month</span></div>
+<ul>
+<li>Everything in Basic</li>
+<li>Weekly SMS briefs</li>
+<li>VA Disability Optimizer</li>
+<li>PCS Financial Command</li>
+<li>Military Spouse Track</li>
+<li>SBP modeling</li>
+<li>1 CFP call per quarter</li>
+</ul>
+<a href="/subscribe.html" class="g h">Get Started</a>
+</div>
+<div class="t">
+<h3>Unit Command</h3>
+<div class="v">$1,999<span>/month</span></div>
+<ul>
+<li>Up to 20 accounts</li>
+<li>Commander dashboard</li>
+<li>War Room cohort access</li>
+<li>Dedicated CFP partner</li>
+</ul>
+<a href="/subscribe.html" class="g h">Get Started</a>
+</div>
+<div class="t">
+<h3>Enterprise</h3>
+<div class="v">Custom</div>
+<ul>
+<li>TAP program integration</li>
+<li>White-labeled platform</li>
+<li>Federal contract ready</li>
+<li>Custom reporting</li>
+</ul>
+<a href="/subscribe.html" class="g h">Contact Us</a>
+</div>
+</div>
+</div>
+</section>
+<section id="co">
+<div class="a">
+<h2>Get In Touch</h2>
+<form id="c">
+<div class="w"><label>Name</label><input type="text" id="d" required></div>
+<div class="w"><label>Email</label><input type="email" id="e" required></div>
+<div class="w"><label>Phone</label><input type="tel" id="f"></div>
+<div class="w"><label>Branch</label><select id="g"><option value="">Select branch</option><option>Army</option><option>Navy</option><option>Marine Corps</option><option>Air Force</option><option>Space Force</option><option>Coast Guard</option><option>National Guard</option><option>Veteran</option></select></div>
+<div class="w"><label>Role</label><input type="text" id="h" placeholder="Active duty, veteran, spouse, etc."></div>
+<div class="w"><label>Separation Date</label><input type="month" id="i"></div>
+<div class="w"><label>TSP Balance Range</label><select id="j"><option value="">Select range</option><option>Under $10K</option><option>$10K-$50K</option><option>$50K-$100K</option><option>$100K-$150K</option><option>$150K-$300K</option><option>$300K-$500K</option><option>$500K+</option></select></div>
+<div class="w"><label>Biggest Concern</label><textarea id="k" placeholder="What is your biggest financial concern about your transition?"></textarea></div>
+<button type="submit" class="g h" style="width:100%;border:none;cursor:pointer;font-family:Arial,sans-serif">Submit</button>
+<div id="l" style="display:none;text-align:center;padding:20px;color:#d4af37;font-weight:700;margin-top:16px"></div>
+</form>
+</div>
+</section>
+<footer>
+<div class="a">
+<div class="x">
+<div><span class="c" style="font-size:12px">Phrontis Financial</span><br><span style="color:#94a3b8;font-size:11px">A Phrontis Holdings Company</span></div>
+<div style="display:flex;gap:24px;font-size:12px"><a href="/intake.html">Intake</a><a href="#mo">Modules</a><a href="#pr">Pricing</a><a href="/jordan.html">For CFPs</a><a href="/pcs-command.html">PCS</a></div>
+<div style="font-size:12px;color:#94a3b8;text-align:right">Built by Veterans. For Veterans.</div>
+</div>
+<div class="y">2026 Phrontis Financial LLC | Not financial advice. CFP services provided by independent practitioner.</div>
+</div>
+</footer>
+<script>
+(function(){
+var c=document.getElementById('a'),x=c.getContext('2d');
+function z(){c.width=window.innerWidth;c.height=window.innerHeight}
+z();window.addEventListener('resize',z);
+var p=[];
+for(var q=0;q<150;q++){p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.5+0.5,dx:(Math.random()-0.5)*0.3,dy:(Math.random()-0.5)*0.3,g:Math.random()>0.5})}
+function w(){x.clearRect(0,0,c.width,c.height);for(var q=0;q<p.length;q++){var s=p[q];x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle=s.g?'rgba(212,175,55,0.6)':'rgba(255,255,255,0.5)';x.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>c.width)s.dx*=-1;if(s.y<0||s.y>c.height)s.dy*=-1}requestAnimationFrame(w)}
+w();
+var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){var t=n.target;var v=parseInt(t.getAttribute('data-target'));var pf=t.getAttribute('data-prefix')||'';var sf=t.getAttribute('data-suffix')||'';var d=1500,st=performance.now();function u(now){var el=Math.min((now-st)/d,1);var cv=Math.floor(el*v);t.textContent=pf+(cv>999?cv.toLocaleString():cv)+sf;if(el<1)requestAnimationFrame(u);else t.textContent=pf+(v>999?v.toLocaleString():v)+sf}
+requestAnimationFrame(u);o.unobserve(t)}})},{threshold:0.3});
+document.querySelectorAll('.l').forEach(function(el){o.observe(el)});
+document.getElementById('c').addEventListener('submit',function(ev){
+ev.preventDefault();
+var d={name:document.getElementById('d').value,email:document.getElementById('e').value,phone:document.getElementById('f').value,branch:document.getElementById('g').value,role:document.getElementById('h').value,separation_date:document.getElementById('i').value,tsp_range:document.getElementById('j').value,concern:document.getElementById('k').value,source:'website_contact',timestamp:new Date().toISOString()};
+var b=document.querySelector('#c button');b.textContent='Sending...';b.disabled=true;
+fetch('https://n8n.phrontisleadnetworks.com/webhook/pf-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(){document.getElementById('l').style.display='block';document.getElementById('l').textContent='Thank you! We will be in touch shortly.';document.getElementById('c').reset()}).catch(function(){document.getElementById('l').style.display='block';document.getElementById('l').textContent='Thank you! Your message has been received.'}).finally(function(){b.textContent='Submit';b.disabled=false})});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+})();
+</script>
+</body>
+</html>
