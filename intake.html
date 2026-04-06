@@ -24,8 +24,8 @@ body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;min-height:100vh
 .h:hover{opacity:0.85}
 .i{background:#d4af37;color:#0a0e1a}
 .j{background:transparent;border:1px solid rgba(212,175,55,0.3);color:#d4af37}
-.k{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
-.k label{display:flex;align-items:center;gap:8px;background:#111827;border:1px solid rgba(212,175,55,0.15);border-radius:6px;padding:10px 16px;cursor:pointer;font-size:13px;color:#94a3b8;transition:border-color 0.2s}
+.k{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.k label{display:flex;align-items:center;gap:10px;width:100%;min-height:56px;background:#111827;border:1px solid rgba(212,175,55,0.15);border-radius:6px;padding:12px 16px;cursor:pointer;font-size:15px;color:#94a3b8;transition:border-color 0.2s;white-space:normal;word-break:break-word}
 .k label:hover{border-color:#d4af37}
 .k input[type="checkbox"]{accent-color:#d4af37}
 .k input[type="checkbox"]:checked+span{color:#fff}
@@ -35,6 +35,7 @@ body{font-family:Arial,sans-serif;background:#0a0e1a;color:#fff;min-height:100vh
 .m p{color:#94a3b8;font-size:14px}
 .n{display:inline-block;width:32px;height:32px;border:3px solid #d4af37;border-top-color:transparent;border-radius:50%;animation:o 0.8s linear infinite;margin-bottom:16px}
 @keyframes o{to{transform:rotate(360deg)}}
+@media(max-width:640px){.e input,.e select{width:100%;font-size:16px}.k{flex-direction:column}.k label{width:100%;min-height:56px;font-size:15px;white-space:normal;overflow:visible;text-overflow:unset}.g{flex-direction:column}.g .h{width:100%}}
 </style>
 </head>
 <body>
